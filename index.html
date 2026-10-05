@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Blog | Upskill</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Nunito", "sans-serif"] },
+          colors: { brand: { DEFAULT: "#0a96e6", dark: "#0679bd", light: "#e1f1fc" } },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800">
+
+  <!-- ===== Navbar ===== -->
+  <header class="sticky top-0 z-50 bg-white shadow-sm">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+      <a href="#" class="text-3xl font-black text-brand">UP</a>
+
+      <ul id="navLinks" class="hidden items-center gap-10 text-sm font-semibold md:flex"></ul>
+
+      <div class="hidden items-center gap-3 md:flex">
+        <a href="#" class="rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold hover:bg-slate-100">Log in</a>
+        <a href="#" class="rounded-full bg-brand px-6 py-2 text-sm font-semibold text-white hover:bg-brand-dark">Start Learning</a>
+      </div>
+
+      <button id="menuBtn" class="text-2xl md:hidden" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+    <ul id="mobileMenu" class="hidden space-y-3 border-t px-4 py-4 text-sm font-semibold md:hidden"></ul>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="bg-gradient-to-b from-brand-light to-sky-50 py-20 text-center">
+    <h1 class="text-4xl font-black text-slate-800 md:text-5xl">Our <span class="text-brand">Blog</span></h1>
+    <p class="mt-3 text-slate-600">Explore our latest news, tutorials, and insights.</p>
+  </section>
+
+  <!-- ===== Category Filters ===== -->
+  <section class="mx-auto max-w-4xl px-4 py-10">
+    <div id="categories" class="flex flex-wrap justify-center gap-3"></div>
+  </section>
+
+  <!-- ===== Blog Grid ===== -->
+  <section class="mx-auto max-w-5xl px-4 pb-20">
+    <div id="blogGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+    <p id="emptyMsg" class="hidden py-10 text-center text-slate-500">No posts found in this category yet.</p>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="relative z-10 mx-auto -mb-16 max-w-4xl px-4">
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-brand to-sky-300 p-8 text-white shadow-lg">
+      <h3 class="text-lg font-bold">Don't wait — take the next step toward your brighter future.</h3>
+      <p class="mt-2 font-semibold text-white/90">Your journey begins with one simple action today</p>
+      <a href="#" class="mt-5 inline-block rounded-full bg-white px-6 py-2 text-sm font-semibold text-brand hover:bg-slate-100">Start Learning</a>
+      <i class="fa-solid fa-wand-magic-sparkles absolute right-14 top-1/2 hidden -translate-y-1/2 text-4xl text-white/90 sm:block"></i>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="bg-gradient-to-b from-white to-sky-50 px-4 pb-10 pt-28">
+    <div class="mx-auto max-w-6xl rounded-2xl bg-white p-8 shadow-sm">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <p class="text-sm text-slate-600">Empowering Afghan Youth with Skills for a Digital Future -<b class="text-slate-800">Powered by Upskill</b></p>
+          <div id="socials" class="mt-5 flex gap-4 text-slate-600"></div>
+          <p class="mt-6 text-sm font-semibold">Let's Connect</p>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://upskill.example" alt="QR code" class="mt-3 h-24 w-24 rounded-lg shadow" />
+        </div>
+        <div id="footerLinks" class="contents"></div>
+      </div>
+
+      <div class="mt-10 flex flex-col justify-between gap-3 border-t pt-6 text-xs text-slate-500 sm:flex-row">
+        <div class="flex gap-5">
+          <a href="#" class="hover:text-brand">Privacy &amp; Policy</a>
+          <a href="#" class="hover:text-brand">Terms &amp; Condition</a>
+        </div>
+        <p class="sm:text-right">© <span id="year"></span> Upskill Online. All rights reserved.<br />Powered by <a href="#" class="text-brand">Upskill</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===================== DATA (object arrays) =====================
+    const navItems = [
+      { name: "Home", link: "#" },
+      { name: "Courses", link: "#" },
+      { name: "Testimonials", link: "#" },
+      { name: "Scholarship", link: "#", badge: "NEW" },
+      { name: "About", link: "#" },
+      { name: "Partners", link: "#" },
+    ];
+
+    const categories = [
+      "All", "Accounting & Finance", "AI", "Backend Development", "Cloud Computing",
+      "Data Science", "Digital Marketing", "Entrepreneurship", "Freelancing",
+      "Frontend Development", "Game Development", "Graphic Design", "Microsoft Office",
+      "Mobile Development", "UI/UX Design", "Video Editing & Animation", "Web Development",
+    ];
+
+    const blogs = [
+      {
+        id: 1,
+        title: "Master Essential Computer Skills with the ICDL Program",
+        excerpt: "Master Essential Computer Skills with the ICDL Program. Build your digital skills in just 6 months at Upskill Bootcamp...",
+        category: "Microsoft Office",
+        date: "Dec 09, 2025",
+        image: "https://picsum.photos/seed/icdl/600/360",
+      },
+      {
+        id: 2,
+        title: "Master Graphic Design in 6 Months at Upskill",
+        excerpt: "Turn your creativity into a professional career. In today's digital world, graphic design is more than just attractive visuals...",
+        category: "Graphic Design",
+        date: "Dec 09, 2025",
+        image: "https://picsum.photos/seed/graphic/600/360",
+      },
+      {
+        id: 3,
+        title: "Meet the Founder of Upskill Learning Center – Said Shah",
+        excerpt: "Meet the Founder of Upskill Learning Center. In a rapidly evolving digital world, access to quality education...",
+        category: "Entrepreneurship",
+        date: "Dec 09, 2025",
+        image: "https://picsum.photos/seed/founder/600/360",
+      },
+      {
+        id: 4,
+        title: "Full Stack Developer vs DevOps Engineer",
+        excerpt: "Full Stack Developer vs. DevOps Engineer: key differences explained. In today's software development landscape, two roles...",
+        category: "Backend Development",
+        date: "Dec 09, 2025",
+        image: "https://picsum.photos/seed/devops/600/360",
+      },
+      {
+        id: 5,
+        title: "Backend Development Program at Upskill",
+        excerpt: "Backend Development Program at Upskill Online Academy. Backend development is the powerhouse behind every website and app...",
+        category: "Backend Development",
+        date: "Dec 09, 2025",
+        image: "https://picsum.photos/seed/backend/600/360",
+      },
+      {
+        id: 6,
+        title: "Learn Front-End Development at Upskill Online Academy",
+        excerpt: "Learn Front-End Development at Upskill Online Academy. Embarking on the journey of web development is like stepping...",
+        category: "Frontend Development",
+        date: "Dec 09, 2025",
+        image: "https://picsum.photos/seed/frontend/600/360",
+      },
+    ];
+
+    const socials = [
+      { icon: "fa-facebook-f", link: "#" },
+      { icon: "fa-twitter", link: "#" },
+      { icon: "fa-instagram", link: "#" },
+      { icon: "fa-linkedin-in", link: "#" },
+    ];
+
+    const footerColumns = [
+      {
+        title: "Services",
+        links: ["Tech Services", "Online Courses", "Scholarship", "Careers", "Student Projects", "Partners", "Corporate Training"],
+      },
+      {
+        title: "Helpful Links",
+        links: ["About Us", "Our Instructors", "Success Stories", "Blog", "FAQ"],
+      },
+      {
+        title: "Information",
+        links: ["Privacy Policy", "Terms of Service", "Contact Us"],
+        contact: [
+          { icon: "fa-location-dot", text: "Kabul, Afghanistan" },
+          { icon: "fa-phone", text: "+93 78 176 5151" },
+        ],
+      },
+    ];
+
+    // ===================== RENDER =====================
+    let activeCategory = "All";
+
+    function renderNav() {
+      const html = navItems.map(item => `
+        <li class="relative">
+          <a href="${item.link}" class="hover:text-brand">${item.name}</a>
+          ${item.badge ? `<span class="absolute -right-6 -top-4 rounded-full bg-brand px-2 py-0.5 text-[10px] text-white">${item.badge}</span>` : ""}
+        </li>`).join("");
+      document.getElementById("navLinks").innerHTML = html;
+      document.getElementById("mobileMenu").innerHTML =
+        navItems.map(i => `<li><a href="${i.link}" class="block hover:text-brand">${i.name}</a></li>`).join("");
+    }
+
+    function renderCategories() {
+      document.getElementById("categories").innerHTML = categories.map(cat => `
+        <button data-cat="${cat}"
+          class="rounded-full border px-4 py-1.5 text-sm transition ${
+            cat === activeCategory
+              ? "border-brand bg-brand text-white"
+              : "border-slate-200 bg-white text-slate-700 hover:border-brand hover:text-brand"
+          }">${cat}</button>`).join("");
+    }
+
+    function renderBlogs() {
+      const list = activeCategory === "All" ? blogs : blogs.filter(b => b.category === activeCategory);
+      document.getElementById("emptyMsg").classList.toggle("hidden", list.length > 0);
+      document.getElementById("blogGrid").innerHTML = list.map(blog => `
+        <article class="flex flex-col overflow-hidden rounded-xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+          <img src="${blog.image}" alt="${blog.title}" class="h-44 w-full object-cover" loading="lazy" />
+          <div class="flex flex-1 flex-col p-5">
+            <span class="w-fit rounded-full bg-brand-light px-2.5 py-0.5 text-[11px] text-brand">${blog.category}</span>
+            <h2 class="mt-3 font-extrabold leading-snug">${blog.title}</h2>
+            <p class="mt-2 line-clamp-3 text-xs text-slate-500">${blog.excerpt}</p>
+            <div class="mt-auto flex items-center justify-between pt-5">
+              <span class="text-xs text-slate-500"><i class="fa-regular fa-calendar mr-1"></i>${blog.date}</span>
+              <a href="#" class="rounded-md bg-brand px-3 py-1 text-xs font-semibold text-white hover:bg-brand-dark">
+                Read More <i class="fa-solid fa-arrow-right ml-0.5"></i>
+              </a>
+            </div>
+          </div>
+        </article>`).join("");
+    }
+
+    function renderFooter() {
+      document.getElementById("socials").innerHTML = socials.map(s =>
+        `<a href="${s.link}" class="hover:text-brand"><i class="fa-brands ${s.icon}"></i></a>`).join("");
+
+      document.getElementById("footerLinks").innerHTML = footerColumns.map(col => `
+        <div>
+          <h4 class="font-bold">${col.title}</h4>
+          <ul class="mt-4 space-y-3 text-sm text-slate-600">
+            ${col.links.map(l => `<li><a href="#" class="hover:text-brand">${l}</a></li>`).join("")}
+          </ul>
+          ${col.contact ? `<ul class="mt-6 space-y-2 text-xs text-slate-600">
+            ${col.contact.map(c => `<li><i class="fa-solid ${c.icon} mr-2 text-brand"></i>${c.text}</li>`).join("")}
+          </ul>` : ""}
+        </div>`).join("");
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    }
+
+    // ===================== EVENTS =====================
+    document.getElementById("categories").addEventListener("click", e => {
+      const btn = e.target.closest("button[data-cat]");
+      if (!btn) return;
+      activeCategory = btn.dataset.cat;
+      renderCategories();
+      renderBlogs();
+    });
+
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    });
+
+    renderNav();
+    renderCategories();
+    renderBlogs();
+    renderFooter();
+  </script>
+</body>
+</html>
