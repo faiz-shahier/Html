@@ -1,5 +1,4 @@
-// ===================== DATA (object arrays) =====================
-const navItems = [
+export const navItems = [
   { name: "Home", link: "#" },
   { name: "Courses", link: "#" },
   { name: "Testimonials", link: "#" },
@@ -8,14 +7,14 @@ const navItems = [
   { name: "Partners", link: "#" },
 ];
 
-const categories = [
+export const categories = [
   "All", "Accounting & Finance", "AI", "Backend Development", "Cloud Computing",
   "Data Science", "Digital Marketing", "Entrepreneurship", "Freelancing",
   "Frontend Development", "Game Development", "Graphic Design", "Microsoft Office",
   "Mobile Development", "UI/UX Design", "Video Editing & Animation", "Web Development",
 ];
 
-const blogs = [
+export const blogs = [
   {
     id: 1,
     title: "Master Essential Computer Skills with the ICDL Program",
@@ -66,14 +65,14 @@ const blogs = [
   },
 ];
 
-const socials = [
-  { icon: "fa-facebook-f", link: "#" },
-  { icon: "fa-twitter", link: "#" },
-  { icon: "fa-instagram", link: "#" },
-  { icon: "fa-linkedin-in", link: "#" },
+export const socials = [
+  { name: "Facebook", link: "#" },
+  { name: "Twitter", link: "#" },
+  { name: "Instagram", link: "#" },
+  { name: "LinkedIn", link: "#" },
 ];
 
-const footerColumns = [
+export const footerColumns = [
   {
     title: "Services",
     links: ["Tech Services", "Online Courses", "Scholarship", "Careers", "Student Projects", "Partners", "Corporate Training"],
@@ -85,9 +84,6 @@ const footerColumns = [
   {
     title: "Information",
     links: ["Privacy Policy", "Terms of Service", "Contact Us"],
-    contact: [
-      { icon: "fa-location-dot", text: "Kabul, Afghanistan" },
-      { icon: "fa-phone", text: "+93 78 176 5151" },
-    ],
+    contact: ["📍 Kabul, Afghanistan", "📞 +93 78 176 5151"],
   },
 ];
