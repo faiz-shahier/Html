@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -21,6 +21,12 @@ export default function App() {
   useEffect(() => {
     document.title = t(`titles.${location.pathname}`, { defaultValue: t("titles.notFound") });
   }, [location.pathname, t]);
+
+  // Clean up the address: "/About/" → "/about" (shared links sometimes have capitals or a slash at the end)
+  const cleanPath = location.pathname.toLowerCase().replace(/\/+$/, "") || "/";
+  if (cleanPath !== location.pathname) {
+    return <Navigate to={cleanPath + location.search + location.hash} replace />;
+  }
 
   return (
     <>
