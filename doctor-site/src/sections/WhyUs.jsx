@@ -4,11 +4,13 @@ import { FaCertificate } from "react-icons/fa6";
 import { reasons, photos } from "../data";
 import Tag from "../components/Tag";
 import Photo from "../components/Photo";
+import { motion } from "framer-motion";
+import { Reveal, Stagger, StaggerItem } from "../components/Motion";
 
 export default function WhyUs() {
   return (
     <section className="panel bg-white shadow-sm">
-      <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+      <Reveal className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
         <div>
           <Tag>Why choose us</Tag>
           <h2 className="heading mt-6 max-w-lg">Why patients trust Dr. Zadran</h2>
@@ -22,17 +24,23 @@ export default function WhyUs() {
             </Link>
           </div>
         </div>
-      </div>
+      </Reveal>
 
-      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <Stagger className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {reasons.map((r) => (
-          <div key={r.title} className="flex min-h-56 flex-col justify-between rounded-3xl bg-white p-7 shadow-[0_10px_40px_-10px_rgba(22,23,92,0.12)]">
-            <span className="grid h-14 w-14 place-items-center rounded-full bg-lavender-light text-xl text-blue"><r.icon /></span>
-            <h3 className="text-lg font-medium">{r.title}</h3>
-          </div>
+          <StaggerItem key={r.title}>
+            <motion.div whileHover="hover" className="group flex h-full min-h-56 flex-col justify-between rounded-3xl bg-white p-7 shadow-[0_10px_40px_-10px_rgba(22,23,92,0.12)] transition-shadow hover:shadow-[0_20px_50px_-10px_rgba(22,23,92,0.22)]">
+              <motion.span variants={{ hover: { rotate: 12, scale: 1.1 } }} className="grid h-14 w-14 place-items-center rounded-full bg-lavender-light text-xl text-blue transition-colors group-hover:bg-blue group-hover:text-white">
+                <r.icon />
+              </motion.span>
+              <h3 className="text-lg font-medium">{r.title}</h3>
+            </motion.div>
+          </StaggerItem>
         ))}
-        <Photo src={photos.clinic} alt="Clinic" className="min-h-56 rounded-3xl" />
-      </div>
+        <StaggerItem>
+          <Photo src={photos.clinic} alt="Clinic" className="h-full min-h-56 rounded-3xl" />
+        </StaggerItem>
+      </Stagger>
     </section>
   );
 }

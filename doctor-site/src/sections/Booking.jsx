@@ -4,6 +4,8 @@ import { doctor, photos, visitReasons } from "../data";
 import Tag from "../components/Tag";
 import Button from "../components/Button";
 import Photo from "../components/Photo";
+import { motion } from "framer-motion";
+import { Reveal, ease } from "../components/Motion";
 
 const line = "mt-1 w-full border-b border-navy/15 bg-transparent py-2.5 outline-none focus:border-blue";
 
@@ -20,7 +22,13 @@ export default function Booking() {
 
   return (
     <section className="panel grid gap-14 bg-white bg-gradient-to-br from-white from-60% to-lavender shadow-sm lg:grid-cols-2">
-      <form onSubmit={send}>
+      <motion.form
+        onSubmit={send}
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: "some" }}
+        transition={{ duration: 0.7, ease }}
+      >
         <Tag>Appointment booking</Tag>
         <h2 className="heading mt-6">Easy &amp; quick appointment booking</h2>
 
@@ -53,9 +61,11 @@ export default function Booking() {
           <Button type="submit">Send on WhatsApp</Button>
         </div>
         <p className="mt-4 text-xs text-gray">The clinic will reply to confirm your time. In an emergency, go to the nearest hospital.</p>
-      </form>
+      </motion.form>
 
-      <Photo src={photos.booking} alt="Doctor and team" className="min-h-80 rounded-3xl lg:h-full" />
+      <Reveal delay={0.15}>
+        <Photo src={photos.booking} alt="Doctor and team" className="h-full min-h-80 rounded-3xl" />
+      </Reveal>
     </section>
   );
 }

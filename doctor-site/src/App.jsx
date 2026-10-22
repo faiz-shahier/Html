@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -27,7 +28,13 @@ export default function App() {
   return (
     <>
       <Header />
-      <main>
+      {/* Each new page fades in (key = page address) */}
+      <motion.main
+        key={location.pathname}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -35,7 +42,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </main>
+      </motion.main>
       <Footer />
     </>
   );

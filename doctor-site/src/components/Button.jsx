@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import { GoArrowUpRight } from "react-icons/go";
+import { motion } from "framer-motion";
+
+const MotionLink = motion.create(Link);
+// Grows a little on hover, presses in on click
+const press = { whileHover: { scale: 1.03 }, whileTap: { scale: 0.96 } };
 
 // Navy pill with a white arrow circle. Use `to` for pages, or `type="submit"` in forms.
 export default function Button({ to, children, light = false, type, className = "" }) {
@@ -16,5 +21,9 @@ export default function Button({ to, children, light = false, type, className = 
     </>
   );
 
-  return to ? <Link to={to} className={style}>{content}</Link> : <button type={type} className={style}>{content}</button>;
+  return to ? (
+    <MotionLink to={to} className={style} {...press}>{content}</MotionLink>
+  ) : (
+    <motion.button type={type} className={style} {...press}>{content}</motion.button>
+  );
 }

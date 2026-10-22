@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaAsterisk, FaBars, FaXmark, FaRegCalendar } from "react-icons/fa6";
+import { AnimatePresence, motion } from "framer-motion";
 import { links } from "../data";
 
 export default function Header() {
@@ -21,8 +22,17 @@ export default function Header() {
         <nav className="hidden gap-1 rounded-full bg-navy/5 p-1 text-sm font-medium md:flex">
           {links.map((link) => (
             <NavLink key={link.to} to={link.to} end
-              className={({ isActive }) => `rounded-full px-5 py-2 transition ${isActive ? "bg-blue text-white shadow-lg shadow-blue/30" : "text-gray hover:text-navy"}`}>
-              {link.name}
+              className={({ isActive }) => `relative rounded-full px-5 py-2 transition-colors ${isActive ? "text-white" : "text-gray hover:text-navy"}`}>
+              {({ isActive }) => (
+                <>
+                  {/* The indigo pill slides to the current page */}
+                  {isActive && (
+                    <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-blue shadow-lg shadow-blue/30"
+                      transition={{ type: "spring", stiffness: 400, damping: 32 }} />
+                  )}
+                  <span className="relative">{link.name}</span>
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
@@ -36,19 +46,28 @@ export default function Header() {
         </button>
       </div>
 
-      {open && (
-        <nav className="px-6 pb-6 md:hidden">
+      {/* Mobile menu slides open and closed */}
+      <AnimatePresence>
+        {open && (
+        <motion.nav
+          className="overflow-hidden px-6 md:hidden"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.15 }}
+        >
           {links.map((link) => (
             <NavLink key={link.to} to={link.to} end onClick={() => setOpen(false)}
               className={({ isActive }) => `block border-b border-navy/10 py-3.5 font-medium ${isActive ? "text-blue" : ""}`}>
               {link.name}
             </NavLink>
           ))}
-          <Link to="/contact" onClick={() => setOpen(false)} className="mt-5 flex items-center justify-center gap-2 rounded-full bg-blue py-3.5 font-semibold text-white">
+          <Link to="/contact" onClick={() => setOpen(false)} className="mb-6 mt-5 flex items-center justify-center gap-2 rounded-full bg-blue py-3.5 font-semibold text-white">
             <FaRegCalendar /> Book appointment
           </Link>
-        </nav>
-      )}
+        </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
