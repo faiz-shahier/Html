@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --color-navy: #0c2333;
+  --color-slate: #55657a;
+  --color-teal: #0f766e;
+  --color-teal-dark: #0b5a54;
+  --color-teal-light: #e3f2f0;
+  --color-sand: #f6f3ee;
+  --color-gold: #d4b26a;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
