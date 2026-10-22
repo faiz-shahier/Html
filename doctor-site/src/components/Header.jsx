@@ -1,10 +1,14 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaAsterisk, FaBars, FaXmark, FaRegCalendar } from "react-icons/fa6";
 import { links } from "../data";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  // Close the mobile menu whenever the page changes
+  useEffect(() => setOpen(false), [location.key]);
 
   return (
     <header className="sticky top-0 z-50 bg-page/90 backdrop-blur">

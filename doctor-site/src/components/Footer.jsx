@@ -7,7 +7,7 @@ export default function Footer() {
     { icon: FaPhone, href: `tel:${doctor.phone}`, label: "Call" },
     { icon: FaWhatsapp, href: `https://wa.me/${doctor.whatsapp}`, label: "WhatsApp" },
     { icon: FaFacebookF, href: doctor.facebook, label: "Facebook" },
-  ];
+  ].filter((s) => s.href); // hide a link that has no address yet
 
   return (
     <footer className="mx-auto mt-6 max-w-6xl rounded-t-[2rem] bg-navy px-6 pb-8 pt-14 text-sm text-white/60 sm:px-14">

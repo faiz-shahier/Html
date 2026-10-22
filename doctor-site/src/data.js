@@ -9,7 +9,7 @@ export const doctor = {
   city: "Kabul, Afghanistan",
   phone: "+93 78 765 4751",
   whatsapp: "93787654751",
-  facebook: "#", // put the Facebook page link here
+  facebook: "", // put the Facebook page link here (the icon shows once it is set)
 };
 
 // Put photos in the /public folder and write their names here, e.g. "/doctor.jpg".
