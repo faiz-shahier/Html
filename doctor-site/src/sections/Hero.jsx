@@ -5,12 +5,13 @@ import { doctor, photos, memberships } from "../data";
 import Button from "../components/Button";
 import Photo from "../components/Photo";
 import Badge from "../components/Badge";
+import BrainNetwork from "../components/BrainNetwork";
 
 export default function Hero() {
   return (
     <section className="mx-auto max-w-6xl px-3 pt-3">
-      {/* Gradient panel with text + photo */}
-      <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-b from-page via-lavender-light to-lavender px-6 pb-48 pt-14 sm:px-14 lg:pb-56 lg:pt-24">
+      {/* Gradient panel with text + moving brain */}
+      <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-lavender-light via-lavender-light to-cream px-6 pb-48 pt-14 sm:px-14 lg:pb-56 lg:pt-24">
         <div className="relative z-10 max-w-lg">
           <span className="text-[11px] font-bold uppercase tracking-widest"># {doctor.title}</span>
           <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-tight lg:text-6xl">
@@ -21,8 +22,11 @@ export default function Hero() {
           </div>
         </div>
 
-        <Photo src={photos.hero} alt="Doctor photo" className="absolute bottom-0 right-6 hidden h-[88%] w-[42%] rounded-t-[2rem] lg:grid" />
-        <Badge className="absolute bottom-56 right-[37%] hidden lg:grid" />
+        <BrainNetwork className="absolute right-0 top-0 h-[70%] w-full opacity-50 lg:right-4 lg:top-6 lg:h-[72%] lg:w-[55%] lg:opacity-100" />
+        {photos.hero && (
+          <Photo src={photos.hero} alt="Doctor photo" className="absolute bottom-0 right-6 hidden h-[88%] w-[42%] rounded-t-[2rem] lg:block" />
+        )}
+        <Badge className="absolute bottom-56 right-[40%] hidden lg:grid" />
       </div>
 
       {/* Cards that overlap the bottom of the panel */}
