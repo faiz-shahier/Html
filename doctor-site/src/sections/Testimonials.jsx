@@ -1,15 +1,17 @@
 import { FaQuoteLeft } from "react-icons/fa6";
 import { testimonials } from "../data";
 import Tag from "../components/Tag";
+import { useLanguage } from "../i18n/LanguageContext";
 import { Stagger, StaggerItem } from "../components/Motion";
 
 // Hidden until real reviews are added in data.js
 export default function Testimonials() {
+  const { t } = useLanguage();
   if (testimonials.length === 0) return null;
 
   return (
     <section className="panel">
-      <Tag>Patient stories</Tag>
+      <Tag>{t.testimonials.tag}</Tag>
       <Stagger className="mt-10 grid gap-6 md:grid-cols-2">
         {testimonials.map((t) => (
           <StaggerItem key={t.name} className="rounded-3xl bg-white p-8 shadow-sm">

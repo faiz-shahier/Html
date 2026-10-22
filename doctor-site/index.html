@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Khalid Khan Zadran | Neurosurgeon in Kabul</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <script>
+    // Set the saved language before the page draws, so Dari/Pashto never flash left-to-right
+    try {
+      var lang = localStorage.getItem("lang");
+      if (lang === "fa" || lang === "ps") { document.documentElement.lang = lang; document.documentElement.dir = "rtl"; }
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <div id="root"></div>

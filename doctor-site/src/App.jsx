@@ -8,22 +8,19 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-
-const titles = {
-  "/": "Dr. Khalid Khan Zadran | Neurosurgeon in Kabul",
-  "/about": "About | Dr. Khalid Khan Zadran",
-  "/services": "Services | Dr. Khalid Khan Zadran",
-  "/contact": "Book an appointment | Dr. Khalid Khan Zadran",
-};
+import { useLanguage } from "./i18n/LanguageContext";
 
 export default function App() {
   const location = useLocation();
+  const { t } = useLanguage();
 
-  // On every click of a link (even to the same page): go to the top and set the tab title
+  // On every click of a link (even to the same page): go to the top
+  useEffect(() => window.scrollTo(0, 0), [location.key]);
+
+  // Browser tab title, in the chosen language
   useEffect(() => {
-    window.scrollTo(0, 0);
-    document.title = titles[location.pathname] || "Page not found | Dr. Khalid Khan Zadran";
-  }, [location.key, location.pathname]);
+    document.title = t.titles[location.pathname] || t.titles.notFound;
+  }, [location.pathname, t]);
 
   return (
     <>

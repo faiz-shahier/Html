@@ -3,6 +3,7 @@
 @theme {
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
+  --font-rtl: "Vazirmatn", Tahoma, sans-serif;
   --color-navy: #16175c;
   --color-blue: #4b2fe0;
   --color-cream: #f3efc9;
@@ -25,4 +26,27 @@ body {
   .heading {
     @apply text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl;
   }
+}
+
+/* Dari and Pashto (right-to-left) */
+[dir="rtl"] body,
+[dir="rtl"] .font-serif {
+  font-family: var(--font-rtl);
+}
+/* Arabic-script letters join together, so: no letter spacing, no slanted text */
+[dir="rtl"] * {
+  letter-spacing: 0 !important;
+}
+[dir="rtl"] .italic {
+  font-style: normal;
+}
+/* The soft accent words in headings become a lighter weight + indigo instead of italic */
+[dir="rtl"] h1 .font-serif {
+  font-weight: 400;
+  color: var(--color-blue);
+}
+/* Arabic script is taller, so headings need more line height */
+[dir="rtl"] h1,
+[dir="rtl"] .heading {
+  line-height: 1.4;
 }

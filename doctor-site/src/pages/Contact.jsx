@@ -1,20 +1,23 @@
 import { FaLocationDot, FaPhone, FaRegClock } from "react-icons/fa6";
-import { doctor } from "../data";
+import { contact } from "../data";
+import { useLanguage } from "../i18n/LanguageContext";
 import Booking from "../sections/Booking";
 import { Stagger, StaggerItem } from "../components/Motion";
 
-const info = [
-  { icon: FaLocationDot, title: doctor.hospital, text: doctor.city },
-  { icon: FaPhone, title: "Phone & WhatsApp", text: doctor.phone },
-  { icon: FaRegClock, title: "Clinic hours", text: "Call to confirm available times" },
-];
-
 export default function Contact() {
+  const { t } = useLanguage();
+  const info = [
+    { icon: FaLocationDot, title: t.doctor.hospital, text: t.doctor.city },
+    // dir="ltr" keeps the phone number in the right order in Dari and Pashto
+    { icon: FaPhone, title: t.contact.phoneTitle, text: <span dir="ltr">{contact.phone}</span> },
+    { icon: FaRegClock, title: t.contact.hoursTitle, text: t.contact.hoursText },
+  ];
+
   return (
     <>
       <Stagger className="mx-auto grid max-w-6xl gap-4 px-3 pt-6 sm:grid-cols-3">
-        {info.map((item) => (
-          <StaggerItem key={item.title} className="flex items-center gap-4 rounded-3xl bg-white p-6 shadow-sm">
+        {info.map((item, i) => (
+          <StaggerItem key={i} className="flex items-center gap-4 rounded-3xl bg-white p-6 shadow-sm">
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-lavender-light text-blue"><item.icon /></span>
             <span><b className="block font-semibold">{item.title}</b><span className="text-sm text-gray">{item.text}</span></span>
           </StaggerItem>

@@ -1,26 +1,29 @@
 import { Link } from "react-router-dom";
 import { GoArrowUpRight } from "react-icons/go";
 import { FaCertificate } from "react-icons/fa6";
-import { reasons, photos } from "../data";
+import { reasonIcons, photos } from "../data";
+import { useLanguage } from "../i18n/LanguageContext";
 import Tag from "../components/Tag";
 import Photo from "../components/Photo";
 import { motion } from "framer-motion";
 import { Reveal, Stagger, StaggerItem } from "../components/Motion";
 
 export default function WhyUs() {
+  const { t } = useLanguage();
+  const reasons = t.why.reasons.map((title, i) => ({ title, icon: reasonIcons[i] }));
   return (
     <section className="panel bg-white shadow-sm">
       <Reveal className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
         <div>
-          <Tag>Why choose us</Tag>
-          <h2 className="heading mt-6 max-w-lg">Why patients trust Dr. Zadran</h2>
+          <Tag>{t.why.tag}</Tag>
+          <h2 className="heading mt-6 max-w-lg">{t.why.title}</h2>
         </div>
         <div className="flex items-center gap-5">
           <FaCertificate className="shrink-0 text-5xl text-navy" />
           <div>
-            <p className="italic text-gray">Member of the American Association of Neurological Surgeons</p>
+            <p className="italic text-gray">{t.why.member}</p>
             <Link to="/contact" className="mt-1 inline-flex items-center gap-1 border-b border-blue text-sm font-semibold text-blue">
-              Schedule your visit <GoArrowUpRight />
+              {t.why.cta} <GoArrowUpRight className="rtl:-scale-x-100" />
             </Link>
           </div>
         </div>
@@ -38,7 +41,7 @@ export default function WhyUs() {
           </StaggerItem>
         ))}
         <StaggerItem>
-          <Photo src={photos.clinic} alt="Clinic" className="h-full min-h-56 rounded-3xl" />
+          <Photo src={photos.clinic} alt={t.photos.clinic} className="h-full min-h-56 rounded-3xl" />
         </StaggerItem>
       </Stagger>
     </section>
