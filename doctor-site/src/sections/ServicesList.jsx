@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { serviceIcons, photos } from "../data";
-import { useLanguage } from "../i18n/LanguageContext";
+import { useTranslation } from "react-i18next";
 import Tag from "../components/Tag";
 import Button from "../components/Button";
 import Photo from "../components/Photo";
@@ -9,18 +9,19 @@ import { Reveal, Stagger, StaggerItem } from "../components/Motion";
 
 export default function ServicesList() {
   const [active, setActive] = useState(0);
-  const { t, rtl } = useLanguage();
-  const services = t.services.items.map((s, i) => ({ ...s, icon: serviceIcons[i] }));
+  const { t, i18n } = useTranslation();
+  const rtl = i18n.dir() === "rtl";
+  const services = t("services.items").map((s, i) => ({ ...s, icon: serviceIcons[i] }));
   const service = services[active];
 
   return (
     <section className="panel">
       <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
         <div>
-          <Tag>{t.services.tag}</Tag>
-          <h2 className="heading mt-6 max-w-xl">{t.services.title}</h2>
+          <Tag>{t("services.tag")}</Tag>
+          <h2 className="heading mt-6 max-w-xl">{t("services.title")}</h2>
         </div>
-        <Button to="/contact" className="self-start sm:self-auto">{t.services.book}</Button>
+        <Button to="/contact" className="self-start sm:self-auto">{t("services.book")}</Button>
       </Reveal>
 
       <div className="mt-14 grid items-center gap-10 lg:grid-cols-[1fr_0.75fr_0.45fr]">
@@ -38,7 +39,7 @@ export default function ServicesList() {
         </Stagger>
 
         <Reveal delay={0.1}>
-          <Photo src={photos.about} alt={t.photos.treatment} className="aspect-[4/4.4] rounded-3xl" />
+          <Photo src={photos.surgery} alt={t("photos.surgery")} className="aspect-[4/4.4] rounded-3xl" />
         </Reveal>
 
         {/* Detail card: the old one slides out, the new one slides in */}
@@ -56,7 +57,7 @@ export default function ServicesList() {
               <p className="mt-2 text-sm italic leading-relaxed text-gray">{service.text}</p>
             </motion.div>
           </AnimatePresence>
-          <p className="mt-5 text-xs text-gray">{t.doctor.hospital}</p>
+          <p className="mt-5 text-xs text-gray">{t("doctor.hospital")}</p>
         </Reveal>
       </div>
     </section>

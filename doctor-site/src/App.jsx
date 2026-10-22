@@ -8,18 +8,18 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import { useLanguage } from "./i18n/LanguageContext";
+import { useTranslation } from "react-i18next";
 
 export default function App() {
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   // On every click of a link (even to the same page): go to the top
   useEffect(() => window.scrollTo(0, 0), [location.key]);
 
   // Browser tab title, in the chosen language
   useEffect(() => {
-    document.title = t.titles[location.pathname] || t.titles.notFound;
+    document.title = t(`titles.${location.pathname}`, { defaultValue: t("titles.notFound") });
   }, [location.pathname, t]);
 
   return (

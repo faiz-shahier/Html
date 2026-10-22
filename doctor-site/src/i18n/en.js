@@ -1,6 +1,6 @@
 // English text. Dari (fa.js) and Pashto (ps.js) follow exactly the same shape.
+// In a component:  const { t } = useTranslation();   t("hero.cta")
 export default {
-  dir: "ltr",
   doctor: {
     name: "Dr. Khalid Khan Zadran",
     shortName: "Dr. Zadran",
@@ -31,7 +31,18 @@ export default {
     firstSource: "— Rifah Medical Complex, Kabul",
   },
   badge: "Brain & Spine Surgeon • Kabul •",
-  photos: { doctor: "Doctor photo", clinic: "Clinic", about: "Doctor in clinic", treatment: "Treatment", team: "Doctor and team" },
+  brain: {
+    tag: "Neuroscience",
+    title: "Precision care for the body's most complex system",
+    text: "Every nerve signal matters. Dr. Zadran combines specialist FCPS training with modern surgical technology to treat conditions of the brain, spine and nerves.",
+    cta: "Book a consultation",
+    stats: [
+      { value: "FCPS", label: "Fellowship in Neurosurgery" },
+      { value: "4", label: "International societies" },
+      { value: "2", label: "Countries of practice" },
+    ],
+  },
+  photos: { hero: "Neurosurgeon during spine surgery", surgery: "Surgeons in an operating room", doctor: "Doctor photo", clinic: "Clinic", about: "Doctor in clinic", treatment: "Treatment", team: "Doctor and team" },
   about: {
     tag: "About the doctor",
     title: "A pioneer of neurosurgery in Afghanistan",

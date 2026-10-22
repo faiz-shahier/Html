@@ -1,5 +1,5 @@
 import { qualificationCodes, membershipCodes } from "../data";
-import { useLanguage } from "../i18n/LanguageContext";
+import { useTranslation } from "react-i18next";
 import Tag from "../components/Tag";
 import { Reveal, Stagger, StaggerItem } from "../components/Motion";
 
@@ -20,17 +20,16 @@ function List({ title, codes, names }) {
 }
 
 export default function Credentials() {
-  const { t } = useLanguage();
-  const c = t.credentials;
+  const { t } = useTranslation();
   return (
     <section className="panel bg-white shadow-sm">
       <Reveal>
-        <Tag>{c.tag}</Tag>
-        <h2 className="heading mt-6 max-w-xl">{c.title}</h2>
+        <Tag>{t("credentials.tag")}</Tag>
+        <h2 className="heading mt-6 max-w-xl">{t("credentials.title")}</h2>
       </Reveal>
       <div className="mt-14 grid gap-6 lg:grid-cols-2">
-        <List title={c.qualifications} codes={qualificationCodes} names={c.qualificationItems} />
-        <List title={c.memberships} codes={membershipCodes} names={c.membershipItems} />
+        <List title={t("credentials.qualifications")} codes={qualificationCodes} names={t("credentials.qualificationItems")} />
+        <List title={t("credentials.memberships")} codes={membershipCodes} names={t("credentials.membershipItems")} />
       </div>
     </section>
   );

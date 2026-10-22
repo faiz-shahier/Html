@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaGlobe, FaCheck } from "react-icons/fa6";
-import { languages, useLanguage } from "../i18n/LanguageContext";
+import { useTranslation } from "react-i18next";
+import { languages } from "../i18n";
 
 // "🌐 EN" button in the navbar that opens a small list: English / دری / پښتو
 export default function LanguageSwitcher() {
-  const { lang, setLang, t } = useLanguage();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.resolvedLanguage;
   const [open, setOpen] = useState(false);
   const box = useRef(null);
   const current = languages.find((l) => l.code === lang);
@@ -25,7 +27,7 @@ export default function LanguageSwitcher() {
     <div ref={box} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        aria-label={t.nav.language}
+        aria-label={t("nav.language")}
         aria-expanded={open}
         className="flex items-center gap-2 rounded-full border border-navy/10 bg-white px-4 py-2.5 text-sm font-semibold transition hover:border-blue"
       >
@@ -46,7 +48,7 @@ export default function LanguageSwitcher() {
                 <button
                   lang={l.code}
                   onClick={() => {
-                    setLang(l.code);
+                    i18n.changeLanguage(l.code);
                     setOpen(false);
                   }}
                   className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm transition ${

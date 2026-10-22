@@ -10,7 +10,6 @@ import { useEffect, useRef } from "react";
 const HEAD_SHAPE = "M38 95 L38 80 C26 76 16 64 16 48 C16 26 32 10 52 10 C72 10 86 25 86 43 C86 48 85 51 87 55 L92 63 C93 65 91 66 89 66 L86 66 L87 71 C87 74 85 75 83 75 L84 78 C84 82 81 84 76 83 L68 82 L66 95";
 const HEAD = new Path2D(HEAD_SHAPE + " Z");
 
-const COLOR = "88, 64, 230"; // indigo (r, g, b)
 const LINK_DISTANCE = 12; // dots closer than this get a line
 const DOT_COUNT = 110; // dots inside the head
 const EDGE_COUNT = 70; // dots on the outline of the head
@@ -49,7 +48,8 @@ function makeDots(ctx) {
   return dots;
 }
 
-export default function BrainNetwork({ className = "" }) {
+// color: "r, g, b" — indigo by default; use a light colour on dark backgrounds
+export default function BrainNetwork({ className = "", color = "88, 64, 230" }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function BrainNetwork({ className = "" }) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Head outline: join the outline dots in order
-      ctx.strokeStyle = `rgba(${COLOR}, 0.18)`;
+      ctx.strokeStyle = `rgba(${color}, 0.18)`;
       ctx.lineWidth = scale * 0.15;
       ctx.beginPath();
       dots.forEach((d, i) => d.edge && (dots[i - 1]?.edge ? ctx.lineTo(pos[i].x, pos[i].y) : ctx.moveTo(pos[i].x, pos[i].y)));
@@ -97,7 +97,7 @@ export default function BrainNetwork({ className = "" }) {
         d.links.forEach((j) => {
           if (j < i) return;
           const light = Math.max(glow[i], glow[j]);
-          ctx.strokeStyle = `rgba(${COLOR}, ${0.07 + light * 0.6})`;
+          ctx.strokeStyle = `rgba(${color}, ${0.07 + light * 0.6})`;
           ctx.beginPath();
           ctx.moveTo(pos[i].x, pos[i].y);
           ctx.lineTo(pos[j].x, pos[j].y);
@@ -107,7 +107,7 @@ export default function BrainNetwork({ className = "" }) {
 
       // Dots
       dots.forEach((_, i) => {
-        ctx.fillStyle = `rgba(${COLOR}, ${0.25 + glow[i] * 0.75})`;
+        ctx.fillStyle = `rgba(${color}, ${0.25 + glow[i] * 0.75})`;
         ctx.beginPath();
         ctx.arc(pos[i].x, pos[i].y, scale * (0.45 + glow[i] * 0.55), 0, Math.PI * 2);
         ctx.fill();
@@ -117,7 +117,7 @@ export default function BrainNetwork({ className = "" }) {
       signals.forEach((s) => {
         const a = pos[s.from];
         const b = pos[s.to];
-        ctx.fillStyle = `rgba(${COLOR}, 1)`;
+        ctx.fillStyle = `rgba(${color}, 1)`;
         ctx.beginPath();
         ctx.arc(a.x + (b.x - a.x) * s.progress, a.y + (b.y - a.y) * s.progress, scale * 0.6, 0, Math.PI * 2);
         ctx.fill();
@@ -158,7 +158,7 @@ export default function BrainNetwork({ className = "" }) {
       cancelAnimationFrame(frame);
       observer.disconnect();
     };
-  }, []);
+  }, [color]);
 
   return <canvas ref={canvasRef} className={className} aria-hidden="true" />;
 }

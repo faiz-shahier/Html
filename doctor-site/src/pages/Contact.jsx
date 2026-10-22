@@ -1,16 +1,16 @@
 import { FaLocationDot, FaPhone, FaRegClock } from "react-icons/fa6";
 import { contact } from "../data";
-import { useLanguage } from "../i18n/LanguageContext";
+import { useTranslation } from "react-i18next";
 import Booking from "../sections/Booking";
 import { Stagger, StaggerItem } from "../components/Motion";
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
   const info = [
-    { icon: FaLocationDot, title: t.doctor.hospital, text: t.doctor.city },
+    { icon: FaLocationDot, title: t("doctor.hospital"), text: t("doctor.city") },
     // dir="ltr" keeps the phone number in the right order in Dari and Pashto
-    { icon: FaPhone, title: t.contact.phoneTitle, text: <span dir="ltr">{contact.phone}</span> },
-    { icon: FaRegClock, title: t.contact.hoursTitle, text: t.contact.hoursText },
+    { icon: FaPhone, title: t("contact.phoneTitle"), text: <span dir="ltr">{contact.phone}</span> },
+    { icon: FaRegClock, title: t("contact.hoursTitle"), text: t("contact.hoursText") },
   ];
 
   return (
