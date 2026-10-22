@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --color-navy: #0c2333;
+  --color-gray: #55657a;
+  --color-teal: #0f766e;
+  --color-teal-dark: #0b5a54;
+  --color-teal-light: #e3f2f0;
+  --color-sand: #f6f3ee;
+  --color-gold: #d4b26a;
+}
+
+body {
+  @apply bg-white font-body text-navy antialiased;
+}
+
+/* Reusable buttons */
+@layer components {
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-teal px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-teal-dark;
+}
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-navy/15 px-6 py-3.5 text-sm font-semibold transition hover:border-navy;
+}
+}
