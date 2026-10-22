@@ -22,7 +22,11 @@ function seeded(seed) {
   };
 }
 
+// The head is always the same, so the dots are worked out once and reused on every page
+let cachedDots = null;
+
 function makeDots(ctx) {
+  if (cachedDots) return cachedDots;
   const random = seeded(7);
   const dots = [];
   while (dots.length < DOT_COUNT) {
@@ -45,6 +49,7 @@ function makeDots(ctx) {
       .filter(({ j, d }) => j !== i && d < LINK_DISTANCE)
       .map(({ j }) => j);
   });
+  cachedDots = dots;
   return dots;
 }
 
@@ -56,20 +61,22 @@ export default function BrainNetwork({ className = "", color = "88, 64, 230" }) 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     const dots = makeDots(ctx);
+    // Every line once (i < j), worked out a single time
+    const lines = dots.flatMap((d, i) => d.links.filter((j) => j > i).map((j) => [i, j]));
     const glow = new Array(dots.length).fill(0); // how bright each dot is (0–1)
     let signals = []; // { from, to, progress }
-    let frame;
+    let frame = null;
     let lastSpark = 0;
+    let onScreen = false;
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // clientWidth ignores CSS transforms (e.g. a scale animation on a parent)
     const resize = () => {
-      const { width, height } = canvas.getBoundingClientRect();
-      canvas.width = width * devicePixelRatio;
-      canvas.height = height * devicePixelRatio;
+      const ratio = Math.min(devicePixelRatio, 2);
+      canvas.width = canvas.clientWidth * ratio;
+      canvas.height = canvas.clientHeight * ratio;
+      if (!frame) draw(performance.now()); // redraw once when the size changes (the animation redraws itself)
     };
-    resize();
-    const observer = new ResizeObserver(resize);
-    observer.observe(canvas);
 
     const draw = (time) => {
       const size = Math.min(canvas.width, canvas.height);
@@ -77,51 +84,67 @@ export default function BrainNetwork({ className = "", color = "88, 64, 230" }) 
       const offsetX = (canvas.width - size) / 2;
       const offsetY = (canvas.height - size) / 2;
       // Dots float gently
-      const pos = dots.map((d) => ({
-        x: offsetX + (d.x + Math.sin(time / 1400 + d.phase) * 0.6) * scale,
-        y: offsetY + (d.y + Math.cos(time / 1700 + d.phase) * 0.6) * scale,
-      }));
+      const pos = dots.map((d) => [
+        offsetX + (d.x + Math.sin(time / 1400 + d.phase) * 0.6) * scale,
+        offsetY + (d.y + Math.cos(time / 1700 + d.phase) * 0.6) * scale,
+      ]);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Head outline: join the outline dots in order
+      // Head outline: join the outline dots in order (one stroke)
       ctx.strokeStyle = `rgba(${color}, 0.18)`;
       ctx.lineWidth = scale * 0.15;
       ctx.beginPath();
-      dots.forEach((d, i) => d.edge && (dots[i - 1]?.edge ? ctx.lineTo(pos[i].x, pos[i].y) : ctx.moveTo(pos[i].x, pos[i].y)));
+      dots.forEach((d, i) => d.edge && (dots[i - 1]?.edge ? ctx.lineTo(...pos[i]) : ctx.moveTo(...pos[i])));
       ctx.stroke();
 
-      // Faint lines between neighbours
+      // All faint lines in ONE stroke (much faster than one stroke per line)
+      ctx.strokeStyle = `rgba(${color}, 0.07)`;
       ctx.lineWidth = scale * 0.12;
-      dots.forEach((d, i) =>
-        d.links.forEach((j) => {
-          if (j < i) return;
-          const light = Math.max(glow[i], glow[j]);
-          ctx.strokeStyle = `rgba(${color}, ${0.07 + light * 0.6})`;
-          ctx.beginPath();
-          ctx.moveTo(pos[i].x, pos[i].y);
-          ctx.lineTo(pos[j].x, pos[j].y);
-          ctx.stroke();
-        })
-      );
+      ctx.beginPath();
+      for (const [i, j] of lines) {
+        ctx.moveTo(...pos[i]);
+        ctx.lineTo(...pos[j]);
+      }
+      ctx.stroke();
 
-      // Dots
+      // Only the few lit lines are drawn one by one
+      for (const [i, j] of lines) {
+        const light = Math.max(glow[i], glow[j]);
+        if (light < 0.05) continue;
+        ctx.strokeStyle = `rgba(${color}, ${light * 0.6})`;
+        ctx.beginPath();
+        ctx.moveTo(...pos[i]);
+        ctx.lineTo(...pos[j]);
+        ctx.stroke();
+      }
+
+      // All plain dots in ONE fill
+      ctx.fillStyle = `rgba(${color}, 0.25)`;
+      ctx.beginPath();
       dots.forEach((_, i) => {
+        if (glow[i] >= 0.05) return;
+        ctx.moveTo(pos[i][0] + scale * 0.45, pos[i][1]);
+        ctx.arc(pos[i][0], pos[i][1], scale * 0.45, 0, Math.PI * 2);
+      });
+      ctx.fill();
+
+      // Lit dots + travelling signals
+      dots.forEach((_, i) => {
+        if (glow[i] < 0.05) return;
         ctx.fillStyle = `rgba(${color}, ${0.25 + glow[i] * 0.75})`;
         ctx.beginPath();
-        ctx.arc(pos[i].x, pos[i].y, scale * (0.45 + glow[i] * 0.55), 0, Math.PI * 2);
+        ctx.arc(pos[i][0], pos[i][1], scale * (0.45 + glow[i] * 0.55), 0, Math.PI * 2);
         ctx.fill();
       });
-
-      // Signals: a bright point moving along a line
-      signals.forEach((s) => {
-        const a = pos[s.from];
-        const b = pos[s.to];
-        ctx.fillStyle = `rgba(${color}, 1)`;
+      ctx.fillStyle = `rgba(${color}, 1)`;
+      for (const s of signals) {
+        const [ax, ay] = pos[s.from];
+        const [bx, by] = pos[s.to];
         ctx.beginPath();
-        ctx.arc(a.x + (b.x - a.x) * s.progress, a.y + (b.y - a.y) * s.progress, scale * 0.6, 0, Math.PI * 2);
+        ctx.arc(ax + (bx - ax) * s.progress, ay + (by - ay) * s.progress, scale * 0.6, 0, Math.PI * 2);
         ctx.fill();
-      });
+      }
     };
 
     const tick = (time) => {
@@ -151,12 +174,30 @@ export default function BrainNetwork({ className = "", color = "88, 64, 230" }) 
       frame = requestAnimationFrame(tick);
     };
 
-    if (still) draw(0);
-    else frame = requestAnimationFrame(tick);
+    // Only animate while the brain is on screen and the tab is open — saves the processor
+    const start = () => {
+      if (!still && !frame && onScreen && !document.hidden) frame = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      cancelAnimationFrame(frame);
+      frame = null;
+    };
+    const watch = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      onScreen ? start() : stop();
+    });
+    const onTab = () => (document.hidden ? stop() : start());
+
+    const sizeWatch = new ResizeObserver(resize); // also runs once at the start
+    sizeWatch.observe(canvas);
+    watch.observe(canvas);
+    document.addEventListener("visibilitychange", onTab);
 
     return () => {
-      cancelAnimationFrame(frame);
-      observer.disconnect();
+      stop();
+      sizeWatch.disconnect();
+      watch.disconnect();
+      document.removeEventListener("visibilitychange", onTab);
     };
   }, [color]);
 
