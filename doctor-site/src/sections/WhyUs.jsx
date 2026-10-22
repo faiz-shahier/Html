@@ -1,0 +1,38 @@
+import { Link } from "react-router-dom";
+import { GoArrowUpRight } from "react-icons/go";
+import { FaCertificate } from "react-icons/fa6";
+import { reasons, photos } from "../data";
+import Tag from "../components/Tag";
+import Photo from "../components/Photo";
+
+export default function WhyUs() {
+  return (
+    <section className="panel bg-white shadow-sm">
+      <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+        <div>
+          <Tag>Why choose us</Tag>
+          <h2 className="heading mt-6 max-w-lg">Why patients trust Dr. Zadran</h2>
+        </div>
+        <div className="flex items-center gap-5">
+          <FaCertificate className="shrink-0 text-5xl text-navy" />
+          <div>
+            <p className="italic text-gray">Member of the American Association of Neurological Surgeons</p>
+            <Link to="/contact" className="mt-1 inline-flex items-center gap-1 border-b border-blue text-sm font-semibold text-blue">
+              Schedule your visit <GoArrowUpRight />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {reasons.map((r) => (
+          <div key={r.title} className="flex min-h-56 flex-col justify-between rounded-3xl bg-white p-7 shadow-[0_10px_40px_-10px_rgba(22,23,92,0.12)]">
+            <span className="grid h-14 w-14 place-items-center rounded-full bg-lavender-light text-xl text-blue"><r.icon /></span>
+            <h3 className="text-lg font-medium">{r.title}</h3>
+          </div>
+        ))}
+        <Photo src={photos.clinic} alt="Clinic" className="min-h-56 rounded-3xl" />
+      </div>
+    </section>
+  );
+}

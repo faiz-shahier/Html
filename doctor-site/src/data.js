@@ -1,5 +1,5 @@
-// All text on the website lives in this file.
-import { FaBrain, FaUserInjured, FaBone, FaMicrochip } from "react-icons/fa6";
+// All text and pictures on the website live in this file.
+import { FaBrain, FaUserInjured, FaBone, FaMicrochip, FaUserDoctor, FaHeartPulse } from "react-icons/fa6";
 
 export const doctor = {
   name: "Dr. Khalid Khan Zadran",
@@ -10,7 +10,15 @@ export const doctor = {
   phone: "+93 78 765 4751",
   whatsapp: "93787654751",
   facebook: "#", // put the Facebook page link here
-  photo: "", // put the photo in /public and write its name here, e.g. "/doctor.jpg"
+};
+
+// Put photos in the /public folder and write their names here, e.g. "/doctor.jpg".
+// Empty "" shows a soft placeholder instead.
+export const photos = {
+  hero: "", // doctor, standing — used at the top of the home page
+  about: "", // doctor with a patient or in clinic
+  clinic: "", // operating room or clinic
+  booking: "", // doctor and team
 };
 
 export const links = [
@@ -20,25 +28,22 @@ export const links = [
   { name: "Contact", to: "/contact" },
 ];
 
-export const badges = ["FCPS Neurosurgery", "AANS Member", "WFNS Member"];
-
-export const facts = [
-  { value: "FCPS", label: "Fellowship in Neurosurgery" },
-  { value: "4", label: "Professional societies" },
-  { value: "2", label: "Countries of practice & research" },
-  { value: "Kabul", label: "Rifah Medical Complex" },
-];
-
 export const bio = [
   "Dr. Khalid Khan Zadran is a Consultant Neurosurgeon and Brain & Spine Surgeon based in Kabul. He is widely recognised as the first neurosurgeon from Afghanistan to earn the Fellowship of the College of Physicians and Surgeons Pakistan (FCPS) in Neurosurgery.",
   "His clinical and research background spans Afghanistan and Pakistan. Today he provides advanced neurological care at the Rifah Medical Complex, bringing modern surgical technology to patients with brain and spine conditions.",
 ];
 
 export const services = [
-  { icon: FaBrain, title: "Brain disorders", text: "Diagnosis and surgical care for conditions of the brain, informed by ongoing brain-disorder research." },
-  { icon: FaUserInjured, title: "Complex neurotrauma", text: "Management of serious head and spinal injuries, from emergency assessment to recovery." },
-  { icon: FaBone, title: "Spinal interventions", text: "Surgical and interventional treatment for spinal conditions to relieve pain and protect function." },
-  { icon: FaMicrochip, title: "Modern surgical technology", text: "Bringing current surgical techniques and technology to neurological treatment in Afghanistan." },
+  { icon: FaBrain, title: "Brain Disorders", text: "Diagnosis and surgical care for conditions of the brain, informed by ongoing brain-disorder research." },
+  { icon: FaUserInjured, title: "Complex Neurotrauma", text: "Management of serious head and spinal injuries, from emergency assessment to recovery." },
+  { icon: FaBone, title: "Spinal Interventions", text: "Surgical and interventional treatment for spinal conditions to relieve pain and protect function." },
+  { icon: FaMicrochip, title: "Modern Surgical Technology", text: "Current surgical techniques and technology for neurological treatment in Afghanistan." },
+];
+
+export const reasons = [
+  { icon: FaUserDoctor, title: "FCPS-trained neurosurgeon" },
+  { icon: FaMicrochip, title: "Modern surgical technology" },
+  { icon: FaHeartPulse, title: "Care from diagnosis to recovery" },
 ];
 
 export const qualifications = [
@@ -56,11 +61,9 @@ export const memberships = [
   { short: "PSN", full: "Pakistan Society of Neurosurgeons" },
 ];
 
-export const steps = [
-  { title: "Book a consultation", text: "Call or send a WhatsApp message to choose a time." },
-  { title: "Assessment & imaging", text: "Bring your MRI, CT scans and reports for a full review." },
-  { title: "Treatment plan", text: "Get a clear explanation of your options, with or without surgery." },
-  { title: "Surgery & follow-up", text: "If surgery is needed, care continues through recovery." },
-];
+// Add real patient reviews here (with the patient's permission).
+// The "Patient stories" section only appears when this list is not empty.
+// Example: { text: "Thank you for ...", name: "Ahmad K." }
+export const testimonials = [];
 
-export const reasons = ["Brain condition", "Spine / back problem", "Head or spine injury", "Second opinion", "Other"];
+export const visitReasons = ["Brain condition", "Spine / back problem", "Head or spine injury", "Second opinion", "Other"];

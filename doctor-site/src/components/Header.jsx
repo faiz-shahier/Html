@@ -1,47 +1,47 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FaBars, FaXmark } from "react-icons/fa6";
+import { FaAsterisk, FaBars, FaXmark } from "react-icons/fa6";
 import { links } from "../data";
+import Button from "./Button";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const linkStyle = ({ isActive }) => (isActive ? "text-teal" : "hover:text-teal");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-navy/5 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link to="/" className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-full bg-navy font-display text-white">KZ</span>
-          <span>
-            <b className="block font-display font-normal">Dr. Khalid Khan Zadran</b>
-            <small className="text-gray">Neurosurgeon · Kabul</small>
-          </span>
+    <header className="sticky top-0 z-50 bg-page/90 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between border-b border-navy/10 px-6 py-4 sm:px-14">
+        <Link to="/" className="flex items-center gap-2 text-lg font-bold">
+          <FaAsterisk className="text-2xl text-blue" /> Dr. Zadran
         </Link>
 
         <nav className="hidden gap-8 text-sm font-medium md:flex">
           {links.map((link) => (
-            <NavLink key={link.to} to={link.to} className={linkStyle} end>
+            <NavLink key={link.to} to={link.to} end className={({ isActive }) => (isActive ? "text-blue" : "hover:text-blue")}>
               {link.name}
             </NavLink>
           ))}
         </nav>
 
-        <Link to="/contact" className="btn hidden py-2.5 md:inline-flex">Book consultation</Link>
+        <div className="hidden md:block">
+          <Button to="/contact" light>Let's talk</Button>
+        </div>
 
         <button onClick={() => setOpen(!open)} className="p-2 text-2xl md:hidden" aria-label="Menu">
           {open ? <FaXmark /> : <FaBars />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <nav className="border-t border-navy/5 px-4 pb-6 md:hidden">
+        <nav className="px-6 pb-6 md:hidden">
           {links.map((link) => (
-            <NavLink key={link.to} to={link.to} onClick={() => setOpen(false)} className={({ isActive }) => `block border-b border-navy/5 py-3.5 font-medium ${isActive ? "text-teal" : ""}`} end>
+            <NavLink key={link.to} to={link.to} end onClick={() => setOpen(false)}
+              className={({ isActive }) => `block border-b border-navy/10 py-3.5 font-medium ${isActive ? "text-blue" : ""}`}>
               {link.name}
             </NavLink>
           ))}
-          <Link to="/contact" onClick={() => setOpen(false)} className="btn mt-5 w-full">Book consultation</Link>
+          <div onClick={() => setOpen(false)} className="mt-5">
+            <Button to="/contact">Book a consultation</Button>
+          </div>
         </nav>
       )}
     </header>
