@@ -32,10 +32,13 @@ export default function Hero() {
         <motion.div className="relative z-10 max-w-lg" initial="hidden" animate="show" variants={group(0.1)}>
           <motion.span variants={fadeUp} className="inline-block text-[11px] font-bold uppercase tracking-widest"># {doctor.title}</motion.span>
           <motion.h1 variants={group()} className="mt-6 text-5xl font-semibold leading-[1.05] tracking-tight lg:text-6xl">
+            {/* A real space after each word, so screen readers and Google read the words correctly */}
             {words.map(({ w, serif }, i) => (
-              <motion.span key={i} variants={fadeUp} className={`mr-[0.25em] inline-block ${serif ? "font-serif font-normal italic" : ""}`}>
-                {w}
-              </motion.span>
+              <span key={i}>
+                <motion.span variants={fadeUp} className={`inline-block ${serif ? "font-serif font-normal italic" : ""}`}>
+                  {w}
+                </motion.span>{" "}
+              </span>
             ))}
           </motion.h1>
           <motion.div variants={fadeUp} className="mt-10">
