@@ -48,7 +48,7 @@ svg{position:absolute;inset:0}
   <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FD0FF"/><stop offset="1" stop-color="#DDF1FF"/></linearGradient>
   <radialGradient id="glow"><stop offset="0" stop-color="#FFE58A" stop-opacity=".9"/><stop offset="1" stop-color="#FFE58A" stop-opacity="0"/></radialGradient>
  </defs>
- <rect width="1080" height="1920" fill="#E4ECF5"/>
+ <rect width="1080" height="1920" fill="#DCE5F0"/>
  <rect y="1000" width="1080" height="20" fill="#D3DEEB"/>
  <rect y="1320" width="1080" height="600" fill="#C7D3E2"/>
  <!-- window with mountains -->
@@ -62,12 +62,19 @@ svg{position:absolute;inset:0}
   <rect x="146" y="16" width="8" height="348" fill="#fff"/><rect x="16" y="186" width="268" height="8" fill="#fff"/>
  </g>
  <!-- clock -->
- <g transform="translate(905,392)">
+ <g transform="translate(905,410) scale(.8)">
   <circle r="78" fill="#fff" stroke="#0F2A4A" stroke-width="10"/>
   <g fill="#0F2A4A"><circle cy="-58" r="6"/><circle cy="58" r="6"/><circle cx="58" r="6"/><circle cx="-58" r="6"/></g>
   <rect id="clkH" x="-5" y="-40" width="10" height="44" rx="5" fill="#0F2A4A"/>
   <rect id="clkM" x="-3.5" y="-60" width="7" height="64" rx="3.5" fill="#E5484D"/>
   <circle r="9" fill="#0F2A4A"/>
+ </g>
+ <!-- pendant lamp -->
+ <g transform="translate(540,0)">
+  <path d="M-150,330 L150,330 L320,1100 L-320,1100Z" fill="#FFF6D6" opacity=".35"/>
+  <rect x="-3" y="0" width="6" height="250" fill="#26395E"/>
+  <path d="M-90,330 Q-90,250 0,248 Q90,250 90,330Z" fill="#26395E"/>
+  <ellipse cx="0" cy="330" rx="60" ry="12" fill="#FFE9A8"/>
  </g>
  <!-- bookshelf -->
  <g transform="translate(760,700)">
@@ -87,50 +94,12 @@ svg{position:absolute;inset:0}
  <defs>
   <g id="paperS"><rect x="-60" y="-14" width="120" height="14" fill="#fff" stroke="#C8D2DE" stroke-width="2"/></g>
  </defs>
- <!-- principal (seated, origin on desk top center) -->
- <g id="pr">
-  <g id="prArmL">
-   <path d="M-120,-290 L-158,-130 L-80,-30" fill="none" stroke="#2E5E4E" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
-   <path d="M-120,-290 L-158,-130 L-80,-30" fill="none" stroke="#F4F6F8" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
-   <circle cx="-80" cy="-28" r="26" fill="#E8B48F"/>
-  </g>
-  <g id="prArmR">
-   <path d="M120,-290 L158,-130 L80,-30" fill="none" stroke="#2E5E4E" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
-   <path d="M120,-290 L158,-130 L80,-30" fill="none" stroke="#F4F6F8" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
-   <circle cx="80" cy="-28" r="26" fill="#E8B48F"/>
-  </g>
-  <g id="prArmUp" opacity="0">
-   <path d="M120,-290 L200,-200 L190,-360" fill="none" stroke="#2E5E4E" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
-   <path d="M120,-290 L200,-200 L190,-360" fill="none" stroke="#F4F6F8" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
-   <rect x="168" y="-400" width="46" height="50" rx="14" fill="#E8B48F"/>
-   <rect x="180" y="-450" width="20" height="60" rx="10" fill="#E8B48F"/>
-  </g>
-  <path d="M-132,0 L-132,-250 Q-132,-322 -62,-332 L62,-332 Q132,-322 132,-250 L132,0 Z" fill="#F4F6F8" stroke="#C8D2DE" stroke-width="4"/>
-  <path d="M-130,0 L-130,-250 Q-130,-314 -72,-328 L-24,-328 L-8,-70 L-8,0 Z" fill="#2E5E4E"/>
-  <path d="M130,0 L130,-250 Q130,-314 72,-328 L24,-328 L8,-70 L8,0 Z" fill="#2E5E4E"/>
-  <g fill="#D8B03A"><circle cx="-22" cy="-210" r="6"/><circle cx="-20" cy="-160" r="6"/><circle cx="-18" cy="-110" r="6"/></g>
-  <rect x="-24" y="-362" width="48" height="44" fill="#D9A07A"/>
-  <path d="M-34,-330 L0,-300 L34,-330" fill="#F4F6F8" stroke="#C8D2DE" stroke-width="4"/>
-  <g id="prHead">
-   <ellipse cx="-68" cy="-445" rx="13" ry="21" fill="#E0A982"/>
-   <ellipse cx="68" cy="-445" rx="13" ry="21" fill="#E0A982"/>
-   <ellipse cx="0" cy="-450" rx="67" ry="82" fill="#E8B48F"/>
-   <path d="M-67,-458 Q-72,-372 0,-344 Q72,-372 67,-458 Q52,-412 30,-406 Q0,-398 -30,-406 Q-52,-412 -67,-458Z" fill="#A9AFB6"/>
-   <path d="M-36,-418 Q0,-440 36,-418 Q0,-426 -36,-418Z" fill="#8E949B"/>
-   <path id="prSad" d="M-17,-398 Q0,-410 17,-398" fill="none" stroke="#6B3B2A" stroke-width="6" stroke-linecap="round"/>
-   <path id="prHappy" d="M-22,-408 Q0,-384 22,-408Z" fill="#7A2E1E" opacity="0"/>
-   <path d="M2,-470 Q-10,-434 6,-430" fill="none" stroke="#C98B66" stroke-width="5" stroke-linecap="round"/>
-   <g id="prEyes"><ellipse cx="-27" cy="-468" rx="7" ry="9" fill="#2B2B2B"/><ellipse cx="27" cy="-468" rx="7" ry="9" fill="#2B2B2B"/></g>
-   <g fill="rgba(255,255,255,.18)" stroke="#2F3640" stroke-width="5"><circle cx="-27" cy="-466" r="23"/><circle cx="27" cy="-466" r="23"/></g>
-   <path d="M-4,-468 Q0,-474 4,-468" stroke="#2F3640" stroke-width="5" fill="none"/>
-   <rect id="prBrowL" x="-46" y="-500" width="34" height="8" rx="4" fill="#8E949B"/>
-   <rect id="prBrowR" x="12" y="-500" width="34" height="8" rx="4" fill="#8E949B"/>
-   <path d="M-64,-510 Q-66,-566 0,-568 Q66,-566 64,-510 Z" fill="#5B5F66"/>
-   <g fill="#474B52"><circle cx="-40" cy="-540" r="8"/><circle cx="-15" cy="-552" r="8"/><circle cx="12" cy="-548" r="8"/><circle cx="38" cy="-536" r="8"/><circle cx="-26" cy="-524" r="7"/><circle cx="2" cy="-528" r="7"/><circle cx="28" cy="-522" r="7"/></g>
-   <g id="prSweat" fill="#7EC8F5"><path d="M82,-500 Q70,-478 82,-470 Q94,-478 82,-500Z"/><path d="M-88,-520 Q-98,-502 -88,-494 Q-78,-502 -88,-520Z"/></g>
-  </g>
+ <g id="pr"></g>
+ <g id="cs"><g id="csBody"></g>
+  <g id="bulb" opacity="0"><g transform="translate(170,140)"><circle cx="0" cy="-1120" r="90" fill="url(#glow)"/>
+   <path d="M-32,-1130 A40,40 0 1 1 32,-1130 Q20,-1110 18,-1092 L-18,-1092 Q-20,-1110 -32,-1130Z" fill="#FFD43B" stroke="#E0A800" stroke-width="5"/>
+   <rect x="-18" y="-1090" width="36" height="22" rx="5" fill="#8C97A6"/></g></g>
  </g>
-
  <!-- desk -->
  <g id="desk">
   <rect x="120" y="1100" width="840" height="34" rx="10" fill="#B07A4F"/>
@@ -154,44 +123,6 @@ svg{position:absolute;inset:0}
   <g id="steam" stroke="#B9C6D6" stroke-width="6" fill="none" stroke-linecap="round"><path d="M-12,-74 Q-24,-96 -10,-116"/><path d="M12,-74 Q0,-96 14,-116"/></g>
  </g>
 
- <!-- consultant (standing, origin at feet) -->
- <g id="cs">
-  <g id="csLegL"><rect x="-52" y="-440" width="46" height="410" rx="18" fill="#1F2A44"/><ellipse cx="-38" cy="-18" rx="40" ry="18" fill="#111"/></g>
-  <g id="csLegR"><rect x="6" y="-440" width="46" height="410" rx="18" fill="#1F2A44"/><ellipse cx="40" cy="-18" rx="40" ry="18" fill="#111"/></g>
-  <g id="csArmL">
-   <path d="M-92,-770 L-120,-610 L-112,-470" fill="none" stroke="#C8D2DE" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
-   <path d="M-92,-770 L-120,-610 L-112,-470" fill="none" stroke="#fff" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
-   <circle cx="-112" cy="-466" r="21" fill="#EDB58E"/>
-   <g id="laptop"><rect x="-200" y="-520" width="150" height="100" rx="10" fill="#B9C6D6"/><rect x="-190" y="-512" width="130" height="80" rx="6" fill="#1E6FD9"/></g>
-  </g>
-  <path d="M-96,-450 L-96,-722 Q-96,-792 -30,-802 L30,-802 Q96,-792 96,-722 L96,-450 Z" fill="#fff" stroke="#C8D2DE" stroke-width="4"/>
-  <rect x="-96" y="-462" width="192" height="20" fill="#1F2A44"/>
-  <path d="M0,-790 L-15,-770 L-9,-560 L0,-538 L9,-560 L15,-770Z" fill="#1E6FD9"/>
-  <path d="M-12,-792 L12,-792 L8,-770 L-8,-770Z" fill="#1656AD"/>
-  <rect x="-20" y="-838" width="40" height="44" fill="#E2A882"/>
-  <path d="M-32,-802 L-4,-772 M32,-802 L4,-772" stroke="#C8D2DE" stroke-width="5"/>
-  <g id="csHead">
-   <ellipse cx="-56" cy="-905" rx="11" ry="18" fill="#E2A882"/>
-   <ellipse cx="56" cy="-905" rx="11" ry="18" fill="#E2A882"/>
-   <ellipse cx="0" cy="-910" rx="57" ry="69" fill="#EDB58E"/>
-   <path d="M-56,-902 Q-52,-842 0,-836 Q52,-842 56,-902 Q46,-866 28,-862 Q0,-856 -28,-862 Q-46,-866 -56,-902Z" fill="#2A2A2A"/>
-   <path d="M-60,-918 Q-66,-1000 -4,-1006 Q58,-1004 62,-930 Q52,-966 18,-972 Q-10,-960 -30,-976 Q-44,-950 -60,-918Z" fill="#1A1A1A"/>
-   <g id="csEyes"><ellipse cx="-21" cy="-916" rx="6.5" ry="8.5" fill="#222"/><ellipse cx="21" cy="-916" rx="6.5" ry="8.5" fill="#222"/></g>
-   <rect x="-36" y="-942" width="28" height="7" rx="3.5" fill="#1A1A1A"/><rect x="8" y="-942" width="28" height="7" rx="3.5" fill="#1A1A1A"/>
-   <path d="M2,-912 Q-8,-886 6,-884" fill="none" stroke="#CF936C" stroke-width="5" stroke-linecap="round"/>
-   <path d="M-22,-874 Q0,-850 22,-874Z" fill="#fff" stroke="#7A2E1E" stroke-width="4" stroke-linejoin="round"/>
-  </g>
-  <g id="csArmR">
-   <path d="M92,-770 L120,-610 L112,-470" fill="none" stroke="#C8D2DE" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
-   <path d="M92,-770 L120,-610 L112,-470" fill="none" stroke="#fff" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
-   <circle cx="112" cy="-466" r="21" fill="#EDB58E"/>
-  </g>
-  <g id="bulb" opacity="0">
-   <g transform="translate(-150,40)"><circle cx="0" cy="-1120" r="90" fill="url(#glow)"/>
-   <path d="M-32,-1130 A40,40 0 1 1 32,-1130 Q20,-1110 18,-1092 L-18,-1092 Q-20,-1110 -32,-1130Z" fill="#FFD43B" stroke="#E0A800" stroke-width="5"/>
-   <rect x="-18" y="-1090" width="36" height="22" rx="5" fill="#8C97A6"/></g>
-  </g>
- </g>
  <g id="spark"></g>
 </svg>
 
@@ -236,6 +167,67 @@ const S=(el,x=0,y=0,s=1,r=0,cx=0,cy=0)=>el.setAttribute('transform',`translate($
 const H=(el,x=0,y=0,s=1,r=0)=>{el.style.transform=`translate(${x}px,${y}px) rotate(${r}deg) scale(${s})`};
 const O=(el,o)=>{el.style.opacity=o};
 const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+
+// ---------- character generator (flat style) ----------
+function man(p,o){
+ const SK='#F3BC93',SKD='#E2A178',HAIR='#1B2233',HL='#3B4766';
+ const suit=o.suit, TOP=suit?'#26395E':'#F7F9FB', TOPD=suit?'#1A2946':'#D9E1EA', PANTS=suit?'#1F2D4A':'#1E2638';
+ const arm=(id,sx)=>{const x1=sx*90,x2=sx*126,x3=sx*120;
+  return `<g id="${p}${id}">`+
+   (suit?'':`<path d="M${x1},-780 L${x2},-620 L${x3},-490" fill="none" stroke="#D3DBE5" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>`)+
+   `<path d="M${x1},-780 L${x2},-620 L${x3},-490" fill="none" stroke="${TOP}" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>`+
+   (suit?`<circle cx="${x3}" cy="-486" r="20" fill="#F7F9FB"/>`:'')+
+   `<circle cx="${sx*120}" cy="-466" r="23" fill="${SK}"/>`+
+   (o.laptop&&sx<0?`<g id="${p}Lap"><rect x="-215" y="-525" width="150" height="104" rx="12" fill="#AEB9C8"/><rect x="-205" y="-517" width="130" height="84" rx="7" fill="#1E73E8"/><rect x="-190" y="-500" width="70" height="10" rx="5" fill="#fff" opacity=".7"/><rect x="-190" y="-482" width="100" height="10" rx="5" fill="#fff" opacity=".45"/></g>`:'')+
+   `</g>`};
+ const leg=(id,sx)=>`<g id="${p}${id}"><rect x="${sx<0?-52:6}" y="-452" width="46" height="424" rx="16" fill="${PANTS}"/><path d="M${sx<0?-54:6},-36 L${sx<0?-6:54},-36 Q${sx<0?0:62},-2 ${sx<0?-18:40},0 L${sx<0?-70:-4},0 Q${sx<0?-74:-8},-26 ${sx<0?-54:6},-36Z" fill="#12151C"/></g>`;
+ const hair=o.hair==2
+  ? `<path d="M-68,-896 Q-86,-992 -20,-1032 Q42,-1052 74,-992 Q82,-950 68,-896 Q60,-940 40,-955 Q10,-968 -20,-960 Q-48,-952 -58,-928Z" fill="${HAIR}"/><path d="M34,-1034 Q-44,-1044 -70,-956 Q-40,-1004 34,-1010Z" fill="${HAIR}"/><g fill="none" stroke="${HL}" stroke-width="6" stroke-linecap="round"><path d="M14,-1032 Q-30,-1026 -52,-984"/><path d="M34,-1012 Q-8,-1004 -30,-972"/></g>`
+  : `<path d="M-66,-898 Q-76,-950 -60,-988 Q-40,-1036 10,-1040 Q70,-1040 78,-986 Q82,-950 68,-898 Q66,-935 52,-950 Q40,-962 20,-958 Q-10,-952 -30,-966 Q-46,-948 -56,-930 Q-62,-915 -66,-898Z" fill="${HAIR}"/><path d="M-52,-1000 Q-10,-1052 52,-1034 Q80,-1020 80,-988 Q52,-1014 10,-1012 Q-20,-1010 -52,-1000Z" fill="${HAIR}"/><g fill="none" stroke="${HL}" stroke-width="6" stroke-linecap="round"><path d="M-24,-1030 Q20,-1044 54,-1012"/><path d="M-42,-1004 Q0,-1024 40,-996"/></g>`;
+ let torso;
+ if(suit){
+  torso=`<path d="M-106,-440 L-112,-705 Q-110,-792 -44,-808 L44,-808 Q110,-792 112,-705 L106,-440Z" fill="${TOP}"/>
+  <path d="M60,-804 Q110,-792 112,-705 L106,-440 L74,-440 Q84,-620 60,-804Z" fill="${TOPD}" opacity=".6"/>
+  <path d="M-40,-808 L0,-688 L40,-808Z" fill="#F7F9FB"/>
+  <path d="M0,-794 L-12,-778 L-9,-702 L0,-686 L9,-702 L12,-778Z" fill="#1E73E8"/><path d="M-11,-802 L11,-802 L8,-784 L-8,-784Z" fill="#175FC2"/>
+  <path d="M-44,-808 L-4,-688 L-28,-700 L-64,-772Z" fill="${TOPD}"/><path d="M44,-808 L4,-688 L28,-700 L64,-772Z" fill="${TOPD}"/>
+  <path d="M0,-688 L0,-440" stroke="${TOPD}" stroke-width="4"/><circle cx="0" cy="-620" r="6" fill="${TOPD}"/><circle cx="0" cy="-555" r="6" fill="${TOPD}"/>
+  <rect x="44" y="-650" width="42" height="7" rx="3" fill="${TOPD}"/><path d="M52,-650 L60,-664 L70,-650Z" fill="#F7F9FB"/>`;
+ } else {
+  torso=`<path d="M-100,-440 L-104,-705 Q-102,-792 -42,-806 L42,-806 Q102,-792 104,-705 L100,-440Z" fill="${TOP}" stroke="#D3DBE5" stroke-width="3"/>
+  <path d="M58,-802 Q102,-792 104,-705 L100,-440 L72,-440 Q82,-620 58,-802Z" fill="${TOPD}" opacity=".7"/>
+  <path d="M-20,-806 L0,-772 L20,-806Z" fill="${SK}"/>
+  <path d="M-42,-806 L-4,-768 L-24,-792Z M42,-806 L4,-768 L24,-792Z" fill="#fff" stroke="#C9D2DD" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M0,-770 L0,-460" stroke="#D3DBE5" stroke-width="3"/><g fill="#C9D2DD"><circle cy="-720" r="4"/><circle cy="-650" r="4"/><circle cy="-580" r="4"/><circle cy="-510" r="4"/></g>
+  <rect x="-74" y="-690" width="40" height="42" rx="4" fill="none" stroke="#D3DBE5" stroke-width="3"/>
+  <rect x="-100" y="-466" width="200" height="22" fill="#1E2638"/><rect x="-14" y="-468" width="28" height="26" rx="4" fill="#AEB9C8"/>`;
+ }
+ const head=`<g id="${p}Head">
+  <ellipse cx="-62" cy="-905" rx="12" ry="19" fill="${SKD}"/><ellipse cx="62" cy="-905" rx="12" ry="19" fill="${SKD}"/>
+  <ellipse cx="0" cy="-908" rx="62" ry="76" fill="${SK}"/>
+  <path d="M-58,-880 Q-40,-832 0,-832 Q40,-832 58,-880 Q40,-846 0,-844 Q-40,-846 -58,-880Z" fill="${SKD}" opacity=".45"/>
+  <g fill="#F08C7A" opacity=".28"><circle cx="-36" cy="-878" r="12"/><circle cx="36" cy="-878" r="12"/></g>
+  ${hair}
+  <rect id="${p}BL" x="-40" y="-942" width="28" height="8" rx="4" fill="${HAIR}"/><rect id="${p}BR" x="12" y="-942" width="28" height="8" rx="4" fill="${HAIR}"/>
+  <g id="${p}EO"><ellipse cx="-25" cy="-912" rx="6.5" ry="8.5" fill="${HAIR}"/><ellipse cx="25" cy="-912" rx="6.5" ry="8.5" fill="${HAIR}"/><circle cx="-23" cy="-915" r="2" fill="#fff"/><circle cx="27" cy="-915" r="2" fill="#fff"/></g>
+  <g id="${p}EC" opacity="0" fill="none" stroke="${HAIR}" stroke-width="5" stroke-linecap="round"><path d="M-34,-910 Q-25,-921 -16,-910"/><path d="M16,-910 Q25,-921 34,-910"/></g>
+  <path d="M2,-902 Q-7,-884 6,-881" fill="none" stroke="${SKD}" stroke-width="5" stroke-linecap="round"/>
+  <path id="${p}MS" d="M-14,-858 Q0,-868 14,-858" fill="none" stroke="#8A3B2A" stroke-width="5" stroke-linecap="round" opacity="0"/>
+  <path id="${p}MN" d="M-16,-866 Q0,-853 16,-866" fill="none" stroke="#8A3B2A" stroke-width="5" stroke-linecap="round"/>
+  <path id="${p}MH" d="M-20,-868 Q0,-842 20,-868Z" fill="#8A2E22" opacity="0"/>
+  <g id="${p}SW" fill="#7EC8F5" opacity="0"><path d="M74,-960 Q63,-940 74,-932 Q85,-940 74,-960Z"/><path d="M-80,-975 Q-90,-957 -80,-950 Q-70,-957 -80,-975Z"/></g>
+ </g>`;
+ return leg('LegL',-1)+leg('LegR',1)+arm('ArmL',-1)+arm('ArmR',1)+`<rect x="-22" y="-844" width="44" height="46" fill="${SKD}"/>`+torso+head;
+}
+$('pr').innerHTML=man('pr',{suit:true,hair:1});
+$('csBody').innerHTML=man('cs',{suit:false,hair:2,laptop:true});
+function face(p,mode,t,blinkOff){ // mode: sad|neutral|happy
+ const bl=((t+blinkOff)%3.9)<.12;
+ O($(p+'EO'),mode==='happy'||bl?0:1); O($(p+'EC'),mode==='happy'||bl?1:0);
+ O($(p+'MS'),mode==='sad'?1:0); O($(p+'MN'),mode==='neutral'?1:0); O($(p+'MH'),mode==='happy'?1:0);
+ $(p+'BL').setAttribute('transform',mode==='sad'?'rotate(-14,-26,-938)':(mode==='happy'?'translate(0,-6)':''));
+ $(p+'BR').setAttribute('transform',mode==='sad'?'rotate(14,26,-938)':(mode==='happy'?'translate(0,-6)':''));
+}
 
 // ---------- build dynamic content ----------
 const NS='http://www.w3.org/2000/svg';
@@ -288,59 +280,46 @@ function render(t){
  const hideK=eio(P(t,20.4,21.4))*(1-eio(P(t,44.6,45.6)));
  const deskY=hideK*700;
  S($('desk'),0,deskY); const vis=1-hideK; O($('desk'),vis); O($('pr'),vis); O($('stacks'),vis); O($('phone'),vis);
- const breath=Math.sin(t*2.2)*3;
- const stress=t<15?1:0, happy=t>=45?1:0;
+ const stress=t<15?1:0, happy=t>=45.6?1:0;
  const shake=stress?Math.sin(t*38)*2.5*(t>6?1:.4):0;
- S($('pr'),540+shake,1100+deskY+breath*.3);
- S($('prHead'),0,breath,1,stress?Math.sin(t*3)*4:Math.sin(t*1.5)*3,0,-360);
- // blink
- const bl=(t%3.7)<.12?.1:1; $('prEyes').setAttribute('transform',`translate(0,${-468*(1-bl)}) scale(1,${bl})`);
- $('csEyes').setAttribute('transform',`translate(0,${-916*(1-((t+1.3)%4.1<.12?.1:1))}) scale(1,${(t+1.3)%4.1<.12?.1:1})`);
- O($('prSweat'),stress); S($('prSweat'),0,stress?((t*60)%30):0);
- O($('prSad'),1-happy); O($('prHappy'),happy);
- $('prBrowL').setAttribute('transform',`rotate(${stress?-14:0},-29,-496) translate(0,${happy?-6:0})`);
- $('prBrowR').setAttribute('transform',`rotate(${stress?14:0},29,-496) translate(0,${happy?-6:0})`);
- // arms: stress -> hands to head-ish wobble; happy -> thumbs up
- const armWob=stress?Math.sin(t*6)*6:0;
- S($('prArmL'),0,0,1,armWob,-120,-290);
- const up=eb(P(t,46.2,46.8));
- O($('prArmR'),1-up>0.5?1:0); O($('prArmUp'),up>0.5?1:0);
- S($('prArmUp'),0,0,1,Math.sin(t*5)*4,120,-290);
- S($('prArmR'),0,0,1,-armWob,120,-290);
+ const px=t<15.2?540:(t<45?380+160*(1-eio(P(t,15.2,16.6))):395);
+ S($('pr'),px+shake,1400+deskY+Math.sin(t*2.2)*2);
+ S($('prHead'),0,0,1,stress?Math.sin(t*3)*4:Math.sin(t*1.5)*3,0,-830);
+ face('pr',stress?'sad':(happy?'happy':'neutral'),t,0);
+ O($('prSW'),stress); S($('prSW'),0,stress?((t*60)%30):0);
+ const armWob=stress?Math.sin(t*6)*5:0;
+ const shakeHand=happy?(-7+Math.sin(t*10)*3*(t<48?1:0)):0;
+ S($('prArmL'),0,0,1,armWob,-90,-780);
+ S($('prArmR'),0,0,1,-armWob+shakeHand,90,-780);
  // tea
- O($('tea'),P(t,45.4,45.9)); S($('tea'),300,1100+deskY); S($('steam'),0,-((t*20)%14));
-
- // stacks: visible 0-15 ; vanish at 45 (gone)
+ O($('tea'),P(t,45.4,45.9)); S($('tea'),220,1100+deskY); S($('steam'),0,-((t*20)%14));
+ // stacks
  const stackK=t<45?1:0;
- stackDefs.forEach(([x],i)=>{const g=$('st'+i);const wob=stress?Math.sin(t*4+i)*2:0;S(g,x,1100+deskY,1,wob,0,0);O(g,stackK)});
- // flying papers in scene 1-2
+ stackDefs.forEach(([x],i)=>{const g=$('st'+i);const wob=stress?Math.sin(t*4+i)*2:0;S(g,x,1100+deskY,1,wob,0,0);O(g,stackK*vis)});
  [...fly.children].forEach((g,i)=>{const ph=(t*0.6+i/8)%1;const on=(t>1.5&&t<14.6)?1:0;const x=540+Math.sin(i*2.1+ph*3)*360,y=1080-ph*700;S(g,x,y,.9,ph*360*(i%2?1:-1));O(g,on*Math.sin(ph*Math.PI))});
- // phone ringing 9.5-13
- const ring=(t>9.5&&t<13)?1:0; S($('phone'),830+(ring?Math.sin(t*60)*5:0),1100+deskY); O($('ring'),ring*((t*4)%1<.6?1:0));
-
- // bubbles 7.6.. pop, out at 14.8
+ const ring=(t>9.5&&t<13)?1:0; S($('phone'),860+(ring?Math.sin(t*60)*5:0),1100+deskY); O($('ring'),ring*((t*4)%1<.6?1:0));
  bubs.forEach((b,i)=>{const d=$('b'+i);const st=7.6+i*1.4;const k=eb(P(t,st,st+.4));const o=1-P(t,14.6,15);H(d,0,Math.sin(t*2+i)*6,k*(1-P(t,14.6,15)*.4),+d.dataset.r);O(d,(k>0?1:0)*o)});
 
  // ---- consultant ----
- let cx,cy,cs=0.9,walk=0,armR=0,armL=0,lap=1;
- if(t<15){cx=1400;cy=1420}
- else if(t<17.4){const k=eo(P(t,15,17.4));cx=1350-470*k;cy=1420;walk=1-P(t,16.8,17.4)}
- else if(t<20.4){cx=880;cy=1420;armR=-150+Math.sin(t*9)*18*(t<19.2?1:0)}
- else if(t<21.4){const k=eio(P(t,20.4,21.4));cx=880+(160-880)*k;cy=1420+(1250-1420)*k;cs=.9+(.62-.9)*k;walk=1}
+ let cx,cy,cs=1,walk=0,armR=0,armL=0,lap=1;
+ if(t<15){cx=1450;cy=1400}
+ else if(t<17.4){const k=eo(P(t,15,17.4));cx=1400-680*k;cy=1400;walk=1-P(t,16.8,17.4)}
+ else if(t<20.4){cx=720;cy=1400;armR=-150+Math.sin(t*9)*18*(t<19.2?1:0)}
+ else if(t<21.4){const k=eio(P(t,20.4,21.4));cx=720+(160-720)*k;cy=1400+(1250-1400)*k;cs=1+(.62-1)*k;walk=1}
  else if(t<44.6){cx=160;cy=1250;cs=.62;armR=-128+Math.sin(t*2.5)*6;lap=0}
- else if(t<45.6){const k=eio(P(t,44.6,45.6));cx=160+(905-160)*k;cy=1250+(1420-1250)*k;cs=.62+(.9-.62)*k;walk=1;lap=0}
- else {cx=905;cy=1420;armR=-150+Math.sin(t*7)*16;lap=0}
+ else if(t<45.6){const k=eio(P(t,44.6,45.6));cx=160+(685-160)*k;cy=1250+(1400-1250)*k;cs=.62+(1-.62)*k;walk=1;lap=0}
+ else {cx=685;cy=1400;armL=happy?(7+Math.sin(t*10)*3*(t<48?1:0)):0;lap=0}
  const wph=Math.sin(t*12)*walk;
  S($('cs'),cx,cy+(walk?-Math.abs(Math.sin(t*12))*8:Math.sin(t*2)*2),cs);
- S($('csLegL'),0,0,1,wph*16,-29,-440); S($('csLegR'),0,0,1,-wph*16,29,-440);
- S($('csArmL'),0,0,1,-wph*14+armL,-92,-770); S($('csArmR'),0,0,1,wph*14+armR,92,-770);
- O($('laptop'),lap);
+ S($('csLegL'),0,0,1,wph*16,-29,-450); S($('csLegR'),0,0,1,-wph*16,29,-450);
+ S($('csArmL'),0,0,1,-wph*14+armL,-90,-780); S($('csArmR'),0,0,1,wph*14+armR,90,-780);
+ O($('csLap'),lap);
  S($('csHead'),0,0,1,Math.sin(t*1.8)*3,0,-830);
- // bulb 17.6-20.4
+ face('cs',happy?'happy':'neutral',t,1.7);
+ O($('csMN'),happy?0:0); O($('csMH'),happy?1:1); // consultant always broad smile
  const bk=eb(P(t,17.6,18.1))*(1-P(t,20.2,20.5)); O($('bulb'),bk); S($('bulb'),0,(1-bk)*40);
- // move consultant into foreground svg during features so it overlays panel
  const host=$('cs2host'); const csEl=$('cs');
- if(t>=20.8&&t<45.2){ if(csEl.parentNode!==host) host.appendChild(csEl);} else { if(csEl.parentNode===host) $('fg').insertBefore(csEl,$('spark')); }
+ if(t>=20.8&&t<45.2){ if(csEl.parentNode!==host) host.appendChild(csEl);} else { if(csEl.parentNode===host) $('fg').insertBefore(csEl,$('desk')); }
 
  // ---- dim + panel ----
  const pk=eb(P(t,20.9,21.5)); const pout=eio(P(t,44.5,45.1));
@@ -362,7 +341,7 @@ function render(t){
  const sc=eb(P(t,42.8,43.2)); H($('salChip'),0,0,sc); O($('salChip'),sc>0?1:0);
 
  // sparkles at 45.4-50
- [...spark.children].forEach((p,i)=>{const st=45.4+i*.35;const k=P(t,st,st+.9);const a=i*36*Math.PI/180;const x=540+Math.cos(a)*(260+60*(i%3)),y=560+Math.sin(a)*170;S(p,x,y,Math.sin(k*Math.PI)*1.3,k*180);O(p,(k>0&&k<1&&t<51.6)?1:0)});
+ [...spark.children].forEach((p,i)=>{const st=45.4+i*.35;const k=P(t,st,st+.9);const a=i*36*Math.PI/180;const x=540+Math.cos(a)*(330+40*(i%3)),y=420+Math.sin(a)*70;S(p,x,y,Math.sin(k*Math.PI)*1.3,k*180);O(p,(k>0&&k<1&&t<51.6)?1:0)});
 
  // ---- CTA ----
  const ck=eio(P(t,52,52.7)); O($('cta'),ck>0?1:0); H($('cta'),0,(1-ck)*1920,1);
