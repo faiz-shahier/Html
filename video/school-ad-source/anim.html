@@ -168,56 +168,74 @@ const H=(el,x=0,y=0,s=1,r=0)=>{el.style.transform=`translate(${x}px,${y}px) rota
 const O=(el,o)=>{el.style.opacity=o};
 const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
 
-// ---------- character generator (flat style) ----------
+// ---------- character generator v2 (flat office style) ----------
 function man(p,o){
- const SK='#F3BC93',SKD='#E2A178',HAIR='#1B2233',HL='#3B4766';
- const suit=o.suit, TOP=suit?'#26395E':'#F7F9FB', TOPD=suit?'#1A2946':'#D9E1EA', PANTS=suit?'#1F2D4A':'#1E2638';
- const arm=(id,sx)=>{const x1=sx*90,x2=sx*126,x3=sx*120;
-  return `<g id="${p}${id}">`+
-   (suit?'':`<path d="M${x1},-780 L${x2},-620 L${x3},-490" fill="none" stroke="#D3DBE5" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>`)+
-   `<path d="M${x1},-780 L${x2},-620 L${x3},-490" fill="none" stroke="${TOP}" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>`+
-   (suit?`<circle cx="${x3}" cy="-486" r="20" fill="#F7F9FB"/>`:'')+
-   `<circle cx="${sx*120}" cy="-466" r="23" fill="${SK}"/>`+
-   (o.laptop&&sx<0?`<g id="${p}Lap"><rect x="-215" y="-525" width="150" height="104" rx="12" fill="#AEB9C8"/><rect x="-205" y="-517" width="130" height="84" rx="7" fill="#1E73E8"/><rect x="-190" y="-500" width="70" height="10" rx="5" fill="#fff" opacity=".7"/><rect x="-190" y="-482" width="100" height="10" rx="5" fill="#fff" opacity=".45"/></g>`:'')+
-   `</g>`};
- const leg=(id,sx)=>`<g id="${p}${id}"><rect x="${sx<0?-52:6}" y="-452" width="46" height="424" rx="16" fill="${PANTS}"/><path d="M${sx<0?-54:6},-36 L${sx<0?-6:54},-36 Q${sx<0?0:62},-2 ${sx<0?-18:40},0 L${sx<0?-70:-4},0 Q${sx<0?-74:-8},-26 ${sx<0?-54:6},-36Z" fill="#12151C"/></g>`;
+ const SK='#F2B489',SKD='#DE9C70',HAIR='#1A2236',HL='#2E3A57';
+ const suit=o.suit;
+ const NAVY='#26395F',NAVYD='#1A2A4A',SH='#F8FAFC',SHL='#CBD5E1',PANTS=suit?'#22355A':'#1C2537';
+ const hand=(sx)=>`<g><path d="M${-15*sx},0 Q${-20*sx},28 ${-10*sx},46 Q${2*sx},56 ${12*sx},46 Q${19*sx},30 ${15*sx},0Z" fill="${SK}"/><path d="M${15*sx},6 Q${28*sx},16 ${24*sx},32 Q${18*sx},34 ${13*sx},24Z" fill="${SKD}"/><path d="M${-6*sx},30 L${-5*sx},44 M${2*sx},32 L${3*sx},46" stroke="${SKD}" stroke-width="3" stroke-linecap="round"/></g>`;
+ const arm=(id,sx)=>{
+  const sh=[sx*98,-782], el=[sx*114,-610], wr=[sx*104,-482];
+  const col=suit?NAVY:SH;
+  const seg=(a,b,w,c)=>`<path d="M${a[0]},${a[1]} L${b[0]},${b[1]}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`;
+  const outline=!suit;
+  return `<g id="${p}Arm${id}">`+
+   (outline?seg(sh,el,52,SHL):'')+seg(sh,el,46,col)+
+   (!suit?`<path d="M${sx*104},-700 Q${sx*112},-690 ${sx*118},-700" stroke="${SHL}" stroke-width="3" fill="none"/>`:'')+
+   `<g id="${p}FA${id}">`+
+    (outline?seg(el,wr,48,SHL):'')+seg(el,wr,42,col)+
+    (!suit?`<path d="M${sx*100},-560 Q${sx*110},-552 ${sx*120},-562" stroke="${SHL}" stroke-width="3" fill="none"/>`:'')+
+    (suit?seg([wr[0],wr[1]-14],[wr[0],wr[1]+2],40,SH):`<path d="M${wr[0]-20},${wr[1]-14} L${wr[0]+20},${wr[1]-14}" stroke="${SHL}" stroke-width="3"/>`)+
+    `<g transform="translate(${wr[0]},${wr[1]+4})">${hand(sx)}</g>`+
+    (o.laptop&&sx<0?`<g id="${p}Lap"><rect x="-205" y="-500" width="150" height="104" rx="12" fill="#AEB9C8"/><rect x="-195" y="-492" width="130" height="84" rx="7" fill="#1E73E8"/><rect x="-180" y="-475" width="70" height="10" rx="5" fill="#fff" opacity=".7"/><rect x="-180" y="-457" width="100" height="10" rx="5" fill="#fff" opacity=".45"/></g>`:'')+
+   `</g></g>`};
+ const leg=(id,sx)=>{const x=sx<0?-56:6;return `<g id="${p}Leg${id}"><path d="M${x},-450 L${x+50},-450 L${x+46},-34 L${x+4},-34Z" fill="${PANTS}"/><path d="M${x+25},-430 L${x+25},-60" stroke="#00000022" stroke-width="3"/><path d="M${x},-38 L${x+50},-38 Q${x+56+(sx>0?14:0)},-4 ${x+36+(sx>0?14:0)},0 L${x-14-(sx<0?14:0)},0 Q${x-20-(sx<0?14:0)},-24 ${x},-38Z" fill="#10131A"/></g>`};
  const hair=o.hair==2
-  ? `<path d="M-68,-896 Q-86,-992 -20,-1032 Q42,-1052 74,-992 Q82,-950 68,-896 Q60,-940 40,-955 Q10,-968 -20,-960 Q-48,-952 -58,-928Z" fill="${HAIR}"/><path d="M34,-1034 Q-44,-1044 -70,-956 Q-40,-1004 34,-1010Z" fill="${HAIR}"/><g fill="none" stroke="${HL}" stroke-width="6" stroke-linecap="round"><path d="M14,-1032 Q-30,-1026 -52,-984"/><path d="M34,-1012 Q-8,-1004 -30,-972"/></g>`
-  : `<path d="M-66,-898 Q-76,-950 -60,-988 Q-40,-1036 10,-1040 Q70,-1040 78,-986 Q82,-950 68,-898 Q66,-935 52,-950 Q40,-962 20,-958 Q-10,-952 -30,-966 Q-46,-948 -56,-930 Q-62,-915 -66,-898Z" fill="${HAIR}"/><path d="M-52,-1000 Q-10,-1052 52,-1034 Q80,-1020 80,-988 Q52,-1014 10,-1012 Q-20,-1010 -52,-1000Z" fill="${HAIR}"/><g fill="none" stroke="${HL}" stroke-width="6" stroke-linecap="round"><path d="M-24,-1030 Q20,-1044 54,-1012"/><path d="M-42,-1004 Q0,-1024 40,-996"/></g>`;
+  ? `<path d="M-60,-918 Q-74,-972 -52,-1008 Q-30,-1050 14,-1052 Q50,-1060 70,-1030 Q86,-1006 70,-978 Q74,-950 62,-922 Q56,-952 40,-966 Q20,-958 4,-968 Q-14,-956 -30,-968 Q-40,-950 -50,-944 Q-56,-932 -60,-918Z" fill="${HAIR}"/>
+     <path d="M-58,-990 Q-70,-1040 -20,-1046 Q-50,-1020 -42,-990Z" fill="${HAIR}"/>
+     <g fill="none" stroke="${HL}" stroke-width="5" stroke-linecap="round"><path d="M-30,-1020 Q4,-1042 46,-1026"/><path d="M-10,-996 Q20,-1012 50,-998"/></g>`
+  : `<path d="M-62,-922 Q-72,-976 -48,-1008 Q-34,-1046 4,-1050 Q36,-1066 62,-1042 Q90,-1032 84,-996 Q94,-972 72,-954 Q72,-934 62,-918 Q58,-950 40,-962 Q32,-946 16,-950 Q6,-972 -12,-966 Q-28,-958 -38,-970 Q-46,-952 -54,-942 Q-60,-932 -62,-922Z" fill="${HAIR}"/>
+     <path d="M60,-1040 Q100,-1036 96,-990 Q86,-1012 66,-1012Z" fill="${HAIR}"/>
+     <g fill="none" stroke="${HL}" stroke-width="5" stroke-linecap="round"><path d="M-26,-1026 Q14,-1050 58,-1028"/><path d="M-36,-1000 Q4,-1022 44,-1004"/></g>`;
+ const shirt=`<path d="M-30,-816 Q-94,-804 -100,-764 L-90,-440 L90,-440 L100,-764 Q94,-804 30,-816Z" fill="${SH}" stroke="${SHL}" stroke-width="3"/>`;
+ const collar=`<path d="M-30,-820 L-4,-770 L-36,-776 L-46,-806Z" fill="${SH}" stroke="${SHL}" stroke-width="3" stroke-linejoin="round"/><path d="M30,-820 L4,-770 L36,-776 L46,-806Z" fill="${SH}" stroke="${SHL}" stroke-width="3" stroke-linejoin="round"/>`;
  let torso;
  if(suit){
-  torso=`<path d="M-106,-440 L-112,-705 Q-110,-792 -44,-808 L44,-808 Q110,-792 112,-705 L106,-440Z" fill="${TOP}"/>
-  <path d="M60,-804 Q110,-792 112,-705 L106,-440 L74,-440 Q84,-620 60,-804Z" fill="${TOPD}" opacity=".6"/>
-  <path d="M-40,-808 L0,-688 L40,-808Z" fill="#F7F9FB"/>
-  <path d="M0,-794 L-12,-778 L-9,-702 L0,-686 L9,-702 L12,-778Z" fill="#1E73E8"/><path d="M-11,-802 L11,-802 L8,-784 L-8,-784Z" fill="#175FC2"/>
-  <path d="M-44,-808 L-4,-688 L-28,-700 L-64,-772Z" fill="${TOPD}"/><path d="M44,-808 L4,-688 L28,-700 L64,-772Z" fill="${TOPD}"/>
-  <path d="M0,-688 L0,-440" stroke="${TOPD}" stroke-width="4"/><circle cx="0" cy="-620" r="6" fill="${TOPD}"/><circle cx="0" cy="-555" r="6" fill="${TOPD}"/>
-  <rect x="44" y="-650" width="42" height="7" rx="3" fill="${TOPD}"/><path d="M52,-650 L60,-664 L70,-650Z" fill="#F7F9FB"/>`;
+  torso=shirt+
+   `<path d="M-12,-794 L12,-794 L8,-772 L-8,-772Z" fill="#1765CF"/><path d="M-8,-772 L8,-772 L19,-500 L0,-474 L-19,-500Z" fill="#1E74E8"/><path d="M0,-772 L8,-772 L19,-500 L0,-474Z" fill="#1765CF" opacity=".6"/>`+
+   collar+
+   `<path d="M-32,-816 Q-96,-806 -106,-762 L-112,-440 Q-110,-418 -88,-414 L-56,-414 Q-50,-600 -32,-816Z" fill="${NAVY}"/>`+
+   `<path d="M32,-816 Q96,-806 106,-762 L112,-440 Q110,-418 88,-414 L56,-414 Q50,-600 32,-816Z" fill="${NAVY}"/>`+
+   `<path d="M32,-816 Q96,-806 106,-762 L112,-440 Q110,-418 88,-414 L80,-414 Q92,-620 70,-800Z" fill="${NAVYD}" opacity=".55"/>`+
+   `<path d="M-32,-816 L-66,-792 L-56,-700 L-72,-690 L-48,-560 Q-46,-640 -32,-816Z" fill="${NAVYD}"/>`+
+   `<path d="M32,-816 L66,-792 L56,-700 L72,-690 L48,-560 Q46,-640 32,-816Z" fill="${NAVYD}"/>`+
+   `<path d="M60,-700 L94,-704" stroke="${NAVYD}" stroke-width="5"/><path d="M66,-702 L72,-716 L80,-702Z" fill="${SH}"/>`+
+   `<path d="M-98,-540 L-66,-540 M66,-540 L98,-540" stroke="${NAVYD}" stroke-width="4"/>`;
  } else {
-  torso=`<path d="M-100,-440 L-104,-705 Q-102,-792 -42,-806 L42,-806 Q102,-792 104,-705 L100,-440Z" fill="${TOP}" stroke="#D3DBE5" stroke-width="3"/>
-  <path d="M58,-802 Q102,-792 104,-705 L100,-440 L72,-440 Q82,-620 58,-802Z" fill="${TOPD}" opacity=".7"/>
-  <path d="M-20,-806 L0,-772 L20,-806Z" fill="${SK}"/>
-  <path d="M-42,-806 L-4,-768 L-24,-792Z M42,-806 L4,-768 L24,-792Z" fill="#fff" stroke="#C9D2DD" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M0,-770 L0,-460" stroke="#D3DBE5" stroke-width="3"/><g fill="#C9D2DD"><circle cy="-720" r="4"/><circle cy="-650" r="4"/><circle cy="-580" r="4"/><circle cy="-510" r="4"/></g>
-  <rect x="-74" y="-690" width="40" height="42" rx="4" fill="none" stroke="#D3DBE5" stroke-width="3"/>
-  <rect x="-100" y="-466" width="200" height="22" fill="#1E2638"/><rect x="-14" y="-468" width="28" height="26" rx="4" fill="#AEB9C8"/>`;
+  torso=shirt+
+   `<path d="M60,-806 Q94,-800 100,-764 L90,-440 L70,-440 Q80,-620 60,-806Z" fill="#E3E9F0"/>`+
+   `<path d="M-20,-816 L0,-780 L20,-816Z" fill="${SK}"/>`+collar+
+   `<path d="M0,-780 L0,-450" stroke="${SHL}" stroke-width="3"/><g fill="${SHL}"><circle cy="-730" r="4"/><circle cy="-660" r="4"/><circle cy="-590" r="4"/><circle cy="-520" r="4"/></g>`+
+   `<path d="M-74,-700 L-36,-700 L-36,-662 Q-55,-656 -74,-662Z" fill="none" stroke="${SHL}" stroke-width="3"/>`+
+   `<path d="M-60,-600 Q-40,-590 -30,-610 M40,-520 Q55,-510 70,-525" stroke="${SHL}" stroke-width="3" fill="none"/>`+
+   `<rect x="-92" y="-458" width="184" height="22" fill="#151B28"/><rect x="-14" y="-460" width="28" height="26" rx="4" fill="#9AA6B6"/>`;
  }
  const head=`<g id="${p}Head">
-  <ellipse cx="-62" cy="-905" rx="12" ry="19" fill="${SKD}"/><ellipse cx="62" cy="-905" rx="12" ry="19" fill="${SKD}"/>
-  <ellipse cx="0" cy="-908" rx="62" ry="76" fill="${SK}"/>
-  <path d="M-58,-880 Q-40,-832 0,-832 Q40,-832 58,-880 Q40,-846 0,-844 Q-40,-846 -58,-880Z" fill="${SKD}" opacity=".45"/>
-  <g fill="#F08C7A" opacity=".28"><circle cx="-36" cy="-878" r="12"/><circle cx="36" cy="-878" r="12"/></g>
+  <ellipse cx="-58" cy="-912" rx="12" ry="19" fill="${SKD}"/><ellipse cx="58" cy="-912" rx="12" ry="19" fill="${SKD}"/>
+  <path d="M-56,-916 Q-58,-860 -28,-842 Q0,-830 28,-842 Q58,-860 56,-916 Q54,-990 0,-992 Q-54,-990 -56,-916Z" fill="${SK}"/>
+  <path d="M-50,-878 Q-34,-842 0,-838 Q34,-842 50,-878 Q30,-852 0,-850 Q-30,-852 -50,-878Z" fill="${SKD}" opacity=".35"/>
   ${hair}
-  <rect id="${p}BL" x="-40" y="-942" width="28" height="8" rx="4" fill="${HAIR}"/><rect id="${p}BR" x="12" y="-942" width="28" height="8" rx="4" fill="${HAIR}"/>
-  <g id="${p}EO"><ellipse cx="-25" cy="-912" rx="6.5" ry="8.5" fill="${HAIR}"/><ellipse cx="25" cy="-912" rx="6.5" ry="8.5" fill="${HAIR}"/><circle cx="-23" cy="-915" r="2" fill="#fff"/><circle cx="27" cy="-915" r="2" fill="#fff"/></g>
-  <g id="${p}EC" opacity="0" fill="none" stroke="${HAIR}" stroke-width="5" stroke-linecap="round"><path d="M-34,-910 Q-25,-921 -16,-910"/><path d="M16,-910 Q25,-921 34,-910"/></g>
-  <path d="M2,-902 Q-7,-884 6,-881" fill="none" stroke="${SKD}" stroke-width="5" stroke-linecap="round"/>
-  <path id="${p}MS" d="M-14,-858 Q0,-868 14,-858" fill="none" stroke="#8A3B2A" stroke-width="5" stroke-linecap="round" opacity="0"/>
-  <path id="${p}MN" d="M-16,-866 Q0,-853 16,-866" fill="none" stroke="#8A3B2A" stroke-width="5" stroke-linecap="round"/>
-  <path id="${p}MH" d="M-20,-868 Q0,-842 20,-868Z" fill="#8A2E22" opacity="0"/>
-  <g id="${p}SW" fill="#7EC8F5" opacity="0"><path d="M74,-960 Q63,-940 74,-932 Q85,-940 74,-960Z"/><path d="M-80,-975 Q-90,-957 -80,-950 Q-70,-957 -80,-975Z"/></g>
+  <path id="${p}BL" d="M-42,-940 Q-28,-950 -12,-942" stroke="${HAIR}" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path id="${p}BR" d="M12,-942 Q28,-950 42,-940" stroke="${HAIR}" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <g id="${p}EO"><ellipse cx="-26" cy="-916" rx="6" ry="8" fill="${HAIR}"/><ellipse cx="26" cy="-916" rx="6" ry="8" fill="${HAIR}"/><circle cx="-24" cy="-919" r="2" fill="#fff"/><circle cx="28" cy="-919" r="2" fill="#fff"/></g>
+  <g id="${p}EC" opacity="0" fill="none" stroke="${HAIR}" stroke-width="5" stroke-linecap="round"><path d="M-35,-914 Q-26,-906 -17,-914"/><path d="M17,-914 Q26,-906 35,-914"/></g>
+  <path d="M3,-906 Q-6,-888 6,-884" fill="none" stroke="${SKD}" stroke-width="5" stroke-linecap="round"/>
+  <path id="${p}MS" d="M-14,-860 Q0,-870 14,-860" fill="none" stroke="#8A3B2A" stroke-width="5" stroke-linecap="round" opacity="0"/>
+  <path id="${p}MN" d="M-16,-868 Q0,-856 16,-868" fill="none" stroke="#8A3B2A" stroke-width="5" stroke-linecap="round"/>
+  <path id="${p}MH" d="M-18,-870 Q0,-848 18,-870Z" fill="#8A2E22" opacity="0"/>
+  <g id="${p}SW" fill="#7EC8F5" opacity="0"><path d="M70,-966 Q59,-946 70,-938 Q81,-946 70,-966Z"/><path d="M-76,-980 Q-86,-962 -76,-955 Q-66,-962 -76,-980Z"/></g>
  </g>`;
- return leg('LegL',-1)+leg('LegR',1)+arm('ArmL',-1)+arm('ArmR',1)+`<rect x="-22" y="-844" width="44" height="46" fill="${SKD}"/>`+torso+head;
+ return leg('L',-1)+leg('R',1)+arm('L',-1)+arm('R',1)+`<path d="M-20,-850 L20,-850 L22,-806 L-22,-806Z" fill="${SKD}"/>`+torso+head;
 }
 $('pr').innerHTML=man('pr',{suit:true,hair:1});
 $('csBody').innerHTML=man('cs',{suit:false,hair:2,laptop:true});
@@ -288,9 +306,9 @@ function render(t){
  face('pr',stress?'sad':(happy?'happy':'neutral'),t,0);
  O($('prSW'),stress); S($('prSW'),0,stress?((t*60)%30):0);
  const armWob=stress?Math.sin(t*6)*5:0;
- const shakeHand=happy?(-7+Math.sin(t*10)*3*(t<48?1:0)):0;
- S($('prArmL'),0,0,1,armWob,-90,-780);
- S($('prArmR'),0,0,1,-armWob+shakeHand,90,-780);
+ 
+ const yes=eb(P(t,46,46.5)); S($('prArmL'),0,0,1,armWob+24*yes,-98,-782); S($('prFAL'),0,0,1,(135+Math.sin(t*8)*8)*yes,-114,-610);
+ S($('prArmR'),0,0,1,-armWob,98,-782); S($('prFAR'),0,0,1,0,114,-610);
  // tea
  O($('tea'),P(t,45.4,45.9)); S($('tea'),220,1100+deskY); S($('steam'),0,-((t*20)%14));
  // stacks
@@ -301,18 +319,18 @@ function render(t){
  bubs.forEach((b,i)=>{const d=$('b'+i);const st=7.6+i*1.4;const k=eb(P(t,st,st+.4));const o=1-P(t,14.6,15);H(d,0,Math.sin(t*2+i)*6,k*(1-P(t,14.6,15)*.4),+d.dataset.r);O(d,(k>0?1:0)*o)});
 
  // ---- consultant ----
- let cx,cy,cs=1,walk=0,armR=0,armL=0,lap=1;
+ let cx,cy,cs=1,walk=0,armR=0,armL=0,lap=1,elR=0;
  if(t<15){cx=1450;cy=1400}
  else if(t<17.4){const k=eo(P(t,15,17.4));cx=1400-680*k;cy=1400;walk=1-P(t,16.8,17.4)}
- else if(t<20.4){cx=720;cy=1400;armR=-150+Math.sin(t*9)*18*(t<19.2?1:0)}
+ else if(t<20.4){cx=720;cy=1400;armR=-150;elR=Math.sin(t*9)*22*(t<19.2?1:0)}
  else if(t<21.4){const k=eio(P(t,20.4,21.4));cx=720+(160-720)*k;cy=1400+(1250-1400)*k;cs=1+(.62-1)*k;walk=1}
  else if(t<44.6){cx=160;cy=1250;cs=.62;armR=-128+Math.sin(t*2.5)*6;lap=0}
  else if(t<45.6){const k=eio(P(t,44.6,45.6));cx=160+(685-160)*k;cy=1250+(1400-1250)*k;cs=.62+(1-.62)*k;walk=1;lap=0}
- else {cx=685;cy=1400;armL=happy?(7+Math.sin(t*10)*3*(t<48?1:0)):0;lap=0}
+ else {cx=700;cy=1400;lap=0;const y2=eb(P(t,46.3,46.8));armR=-24*y2;elR=(-135+Math.sin(t*8+1)*8)*y2}
  const wph=Math.sin(t*12)*walk;
  S($('cs'),cx,cy+(walk?-Math.abs(Math.sin(t*12))*8:Math.sin(t*2)*2),cs);
- S($('csLegL'),0,0,1,wph*16,-29,-450); S($('csLegR'),0,0,1,-wph*16,29,-450);
- S($('csArmL'),0,0,1,-wph*14+armL,-90,-780); S($('csArmR'),0,0,1,wph*14+armR,90,-780);
+ S($('csLegL'),0,0,1,wph*16,-31,-450); S($('csLegR'),0,0,1,-wph*16,31,-450);
+ S($('csArmL'),0,0,1,-wph*14,-98,-782); S($('csFAL'),0,0,1,lap?-40:0,-114,-610); S($('csArmR'),0,0,1,wph*14+armR,98,-782); S($('csFAR'),0,0,1,elR,114,-610);
  O($('csLap'),lap);
  S($('csHead'),0,0,1,Math.sin(t*1.8)*3,0,-830);
  face('cs',happy?'happy':'neutral',t,1.7);
@@ -341,7 +359,7 @@ function render(t){
  const sc=eb(P(t,42.8,43.2)); H($('salChip'),0,0,sc); O($('salChip'),sc>0?1:0);
 
  // sparkles at 45.4-50
- [...spark.children].forEach((p,i)=>{const st=45.4+i*.35;const k=P(t,st,st+.9);const a=i*36*Math.PI/180;const x=540+Math.cos(a)*(330+40*(i%3)),y=420+Math.sin(a)*70;S(p,x,y,Math.sin(k*Math.PI)*1.3,k*180);O(p,(k>0&&k<1&&t<51.6)?1:0)});
+ [...spark.children].forEach((p,i)=>{const st=45.4+i*.35;const k=P(t,st,st+.9);const a=i*36*Math.PI/180;const x=540+(i%2?1:-1)*(390+(i%3)*40),y=380+((i*53)%220);S(p,x,y,Math.sin(k*Math.PI)*1.3,k*180);O(p,(k>0&&k<1&&t<51.6)?1:0)});
 
  // ---- CTA ----
  const ck=eio(P(t,52,52.7)); O($('cta'),ck>0?1:0); H($('cta'),0,(1-ck)*1920,1);
