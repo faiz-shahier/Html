@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face{font-family:V;src:url(Vazirmatn-Medium.woff2);font-weight:500}
+@font-face{font-family:V;src:url(Vazirmatn-Bold.woff2);font-weight:700}
+@font-face{font-family:V;src:url(Vazirmatn-ExtraBold.woff2);font-weight:800}
+@font-face{font-family:V;src:url(Vazirmatn-Black.woff2);font-weight:900}
+:root{--navy:#0F2A4A;--blue:#1E6FD9;--green:#18A558;--red:#E5484D;--yellow:#FFC93C;--wall:#E4ECF5}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--wall);font-family:V,sans-serif}
+#stage{position:absolute;inset:0}
+svg{position:absolute;inset:0}
+#btn svg{position:static;flex:none}
+.abs{position:absolute}
+#title{left:0;right:0;top:175px;text-align:center}
+#title span{display:inline-block;font-weight:900;font-size:76px;color:var(--navy);background:var(--yellow);padding:6px 38px 16px;border-radius:26px;box-shadow:0 10px 0 rgba(15,42,74,.18)}
+#cap{left:60px;right:60px;top:1268px;text-align:center}
+#cap span{display:inline-block;font-weight:800;font-size:46px;line-height:1.55;color:#fff;background:rgba(15,42,74,.88);padding:10px 34px 16px;border-radius:24px}
+.bub{font-weight:800;font-size:44px;color:var(--navy);background:#fff;border:6px solid var(--red);border-radius:30px;padding:10px 30px 16px;white-space:nowrap;box-shadow:0 12px 24px rgba(0,0,0,.15);transform-origin:center}
+.bub b{color:var(--red)}
+#panel{left:250px;top:330px;width:770px;height:740px;background:#fff;border-radius:34px;box-shadow:0 30px 60px rgba(15,42,74,.35);overflow:hidden;transform-origin:50% 50%}
+#phead{height:96px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 34px;font-weight:800;font-size:34px}
+#phead i{font-style:normal;background:var(--blue);padding:4px 22px 10px;border-radius:16px;font-size:30px}
+.dots{display:flex;gap:10px;direction:ltr}.dots b{width:16px;height:16px;border-radius:50%;background:#ff6159;display:block}.dots b:nth-child(2){background:#ffbd2e}.dots b:nth-child(3){background:#28c941}
+.feat{position:absolute;left:0;right:0;top:96px;bottom:0;padding:30px 36px 30px 120px}
+.row{display:flex;align-items:center;justify-content:space-between;height:96px;border-bottom:3px solid #EEF2F7;font-weight:700;font-size:38px;color:var(--navy)}
+.av{width:62px;height:62px;border-radius:50%;background:#D6E4F5;margin-left:22px;display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--blue);font-weight:900}
+.nm{display:flex;align-items:center}
+.chk{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;font-weight:900;transform-origin:center}
+.ok{background:var(--green)}.no{background:var(--red)}
+.chip{font-size:30px;font-weight:800;padding:4px 22px 10px;border-radius:40px;color:#fff;transform-origin:center}
+.amt{font-size:32px;color:#5A6B82;font-weight:700;margin-left:auto;margin-right:24px;direction:rtl}
+.sum{margin-top:26px;font-weight:800;font-size:36px;color:var(--navy)}
+.bar{height:40px;border-radius:20px;background:#EEF2F7;margin-top:14px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),#2BC46F);border-radius:20px}
+#cta{left:0;top:0;width:1080px;height:1920px;background:linear-gradient(160deg,#0F2A4A 0%,#123B6B 55%,#1E6FD9 100%);color:#fff;text-align:center}
+.cta-b{position:absolute;left:0;right:0;text-align:center}
+#btn{display:inline-flex;flex-direction:row;align-items:center;gap:22px;white-space:nowrap;background:#25B867;color:#fff;font-weight:900;font-size:56px;padding:22px 54px 32px;border-radius:70px;box-shadow:0 14px 0 #138A47;transform-origin:center}
+.pill{display:inline-block;background:rgba(255,255,255,.12);border:3px solid rgba(255,255,255,.35);font-weight:800;font-size:40px;padding:8px 30px 14px;border-radius:50px;margin:10px}
+</style>
+</head>
+<body>
+<div id="stage">
+<svg id="bg" viewBox="0 0 1080 1920" width="1080" height="1920">
+ <defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FD0FF"/><stop offset="1" stop-color="#DDF1FF"/></linearGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#FFE58A" stop-opacity=".9"/><stop offset="1" stop-color="#FFE58A" stop-opacity="0"/></radialGradient>
+ </defs>
+ <rect width="1080" height="1920" fill="#E4ECF5"/>
+ <rect y="1000" width="1080" height="20" fill="#D3DEEB"/>
+ <rect y="1320" width="1080" height="600" fill="#C7D3E2"/>
+ <!-- window with mountains -->
+ <g transform="translate(70,390)">
+  <rect width="300" height="380" rx="14" fill="#fff"/>
+  <rect x="16" y="16" width="268" height="348" rx="6" fill="url(#sky)"/>
+  <circle cx="220" cy="90" r="34" fill="#FFE07A"/>
+  <path d="M16,364 L16,250 L90,150 L150,230 L205,170 L284,260 L284,364 Z" fill="#7C93AD"/>
+  <path d="M90,150 L72,175 L88,170 L100,182 L110,165 Z M205,170 L190,190 L205,186 L216,196 L222,185 Z" fill="#fff"/>
+  <path d="M16,364 L16,300 L120,250 L284,320 L284,364 Z" fill="#6E9D74"/>
+  <rect x="146" y="16" width="8" height="348" fill="#fff"/><rect x="16" y="186" width="268" height="8" fill="#fff"/>
+ </g>
+ <!-- clock -->
+ <g transform="translate(905,392)">
+  <circle r="78" fill="#fff" stroke="#0F2A4A" stroke-width="10"/>
+  <g fill="#0F2A4A"><circle cy="-58" r="6"/><circle cy="58" r="6"/><circle cx="58" r="6"/><circle cx="-58" r="6"/></g>
+  <rect id="clkH" x="-5" y="-40" width="10" height="44" rx="5" fill="#0F2A4A"/>
+  <rect id="clkM" x="-3.5" y="-60" width="7" height="64" rx="3.5" fill="#E5484D"/>
+  <circle r="9" fill="#0F2A4A"/>
+ </g>
+ <!-- bookshelf -->
+ <g transform="translate(760,700)">
+  <rect width="250" height="18" fill="#9C6B43"/><rect y="150" width="250" height="18" fill="#9C6B43"/>
+  <g transform="translate(20,-110)"><rect width="34" height="110" fill="#E5484D"/><rect x="40" width="28" height="110" fill="#1E6FD9"/><rect x="74" y="12" width="32" height="98" fill="#FFC93C"/><rect x="112" width="26" height="110" fill="#18A558"/><rect x="150" y="20" width="60" height="90" rx="4" fill="#0F2A4A" transform="rotate(12 150 110)"/></g>
+  <g transform="translate(26,40)"><rect width="30" height="110" fill="#18A558"/><rect x="36" y="10" width="34" height="100" fill="#0F2A4A"/><rect x="76" width="26" height="110" fill="#E5484D"/><path d="M150,110 Q150,50 190,40 Q230,50 230,110 Z" fill="#7FB77E"/></g>
+ </g>
+ <!-- plant -->
+ <g transform="translate(110,1330)">
+  <path d="M0,-170 Q-60,-260 -20,-330 Q10,-250 0,-170Z M0,-170 Q50,-270 100,-280 Q70,-200 0,-170Z M0,-170 Q-90,-200 -110,-250 Q-40,-240 0,-170Z" fill="#2F9E6B"/>
+  <path d="M-55,-170 L55,-170 L40,0 L-40,0 Z" fill="#E27D4A"/>
+ </g>
+</svg>
+
+<!-- characters & desk layer -->
+<svg id="fg" viewBox="0 0 1080 1920" width="1080" height="1920">
+ <defs>
+  <g id="paperS"><rect x="-60" y="-14" width="120" height="14" fill="#fff" stroke="#C8D2DE" stroke-width="2"/></g>
+ </defs>
+ <!-- principal (seated, origin on desk top center) -->
+ <g id="pr">
+  <g id="prArmL">
+   <path d="M-120,-290 L-158,-130 L-80,-30" fill="none" stroke="#2E5E4E" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="M-120,-290 L-158,-130 L-80,-30" fill="none" stroke="#F4F6F8" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+   <circle cx="-80" cy="-28" r="26" fill="#E8B48F"/>
+  </g>
+  <g id="prArmR">
+   <path d="M120,-290 L158,-130 L80,-30" fill="none" stroke="#2E5E4E" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="M120,-290 L158,-130 L80,-30" fill="none" stroke="#F4F6F8" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+   <circle cx="80" cy="-28" r="26" fill="#E8B48F"/>
+  </g>
+  <g id="prArmUp" opacity="0">
+   <path d="M120,-290 L200,-200 L190,-360" fill="none" stroke="#2E5E4E" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="M120,-290 L200,-200 L190,-360" fill="none" stroke="#F4F6F8" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+   <rect x="168" y="-400" width="46" height="50" rx="14" fill="#E8B48F"/>
+   <rect x="180" y="-450" width="20" height="60" rx="10" fill="#E8B48F"/>
+  </g>
+  <path d="M-132,0 L-132,-250 Q-132,-322 -62,-332 L62,-332 Q132,-322 132,-250 L132,0 Z" fill="#F4F6F8" stroke="#C8D2DE" stroke-width="4"/>
+  <path d="M-130,0 L-130,-250 Q-130,-314 -72,-328 L-24,-328 L-8,-70 L-8,0 Z" fill="#2E5E4E"/>
+  <path d="M130,0 L130,-250 Q130,-314 72,-328 L24,-328 L8,-70 L8,0 Z" fill="#2E5E4E"/>
+  <g fill="#D8B03A"><circle cx="-22" cy="-210" r="6"/><circle cx="-20" cy="-160" r="6"/><circle cx="-18" cy="-110" r="6"/></g>
+  <rect x="-24" y="-362" width="48" height="44" fill="#D9A07A"/>
+  <path d="M-34,-330 L0,-300 L34,-330" fill="#F4F6F8" stroke="#C8D2DE" stroke-width="4"/>
+  <g id="prHead">
+   <ellipse cx="-68" cy="-445" rx="13" ry="21" fill="#E0A982"/>
+   <ellipse cx="68" cy="-445" rx="13" ry="21" fill="#E0A982"/>
+   <ellipse cx="0" cy="-450" rx="67" ry="82" fill="#E8B48F"/>
+   <path d="M-67,-458 Q-72,-372 0,-344 Q72,-372 67,-458 Q52,-412 30,-406 Q0,-398 -30,-406 Q-52,-412 -67,-458Z" fill="#A9AFB6"/>
+   <path d="M-36,-418 Q0,-440 36,-418 Q0,-426 -36,-418Z" fill="#8E949B"/>
+   <path id="prSad" d="M-17,-398 Q0,-410 17,-398" fill="none" stroke="#6B3B2A" stroke-width="6" stroke-linecap="round"/>
+   <path id="prHappy" d="M-22,-408 Q0,-384 22,-408Z" fill="#7A2E1E" opacity="0"/>
+   <path d="M2,-470 Q-10,-434 6,-430" fill="none" stroke="#C98B66" stroke-width="5" stroke-linecap="round"/>
+   <g id="prEyes"><ellipse cx="-27" cy="-468" rx="7" ry="9" fill="#2B2B2B"/><ellipse cx="27" cy="-468" rx="7" ry="9" fill="#2B2B2B"/></g>
+   <g fill="rgba(255,255,255,.18)" stroke="#2F3640" stroke-width="5"><circle cx="-27" cy="-466" r="23"/><circle cx="27" cy="-466" r="23"/></g>
+   <path d="M-4,-468 Q0,-474 4,-468" stroke="#2F3640" stroke-width="5" fill="none"/>
+   <rect id="prBrowL" x="-46" y="-500" width="34" height="8" rx="4" fill="#8E949B"/>
+   <rect id="prBrowR" x="12" y="-500" width="34" height="8" rx="4" fill="#8E949B"/>
+   <path d="M-64,-510 Q-66,-566 0,-568 Q66,-566 64,-510 Z" fill="#5B5F66"/>
+   <g fill="#474B52"><circle cx="-40" cy="-540" r="8"/><circle cx="-15" cy="-552" r="8"/><circle cx="12" cy="-548" r="8"/><circle cx="38" cy="-536" r="8"/><circle cx="-26" cy="-524" r="7"/><circle cx="2" cy="-528" r="7"/><circle cx="28" cy="-522" r="7"/></g>
+   <g id="prSweat" fill="#7EC8F5"><path d="M82,-500 Q70,-478 82,-470 Q94,-478 82,-500Z"/><path d="M-88,-520 Q-98,-502 -88,-494 Q-78,-502 -88,-520Z"/></g>
+  </g>
+ </g>
+
+ <!-- desk -->
+ <g id="desk">
+  <rect x="120" y="1100" width="840" height="34" rx="10" fill="#B07A4F"/>
+  <rect x="150" y="1134" width="780" height="290" fill="#97653E"/>
+  <rect x="190" y="1170" width="300" height="220" rx="10" fill="#8A5A36"/>
+  <rect x="590" y="1170" width="300" height="220" rx="10" fill="#8A5A36"/>
+  <circle cx="340" cy="1280" r="12" fill="#D8B03A"/><circle cx="740" cy="1280" r="12" fill="#D8B03A"/>
+ </g>
+ <g id="stacks"></g>
+ <g id="fly"></g>
+ <!-- phone on desk -->
+ <g id="phone" transform="translate(830,1100)">
+  <rect x="-56" y="-44" width="112" height="44" rx="12" fill="#0F2A4A"/>
+  <path d="M-62,-56 Q0,-96 62,-56 L50,-40 L-50,-40Z" fill="#1E3D63"/>
+  <g id="ring" stroke="#E5484D" stroke-width="7" fill="none" stroke-linecap="round"><path d="M-80,-90 Q-96,-70 -84,-50"/><path d="M80,-90 Q96,-70 84,-50"/><path d="M-102,-104 Q-124,-72 -106,-40"/><path d="M102,-104 Q124,-72 106,-40"/></g>
+ </g>
+ <!-- tea cup -->
+ <g id="tea" transform="translate(300,1100)" opacity="0">
+  <path d="M-34,-60 L34,-60 L26,0 L-26,0Z" fill="#fff" stroke="#C8D2DE" stroke-width="4"/>
+  <path d="M34,-48 Q58,-40 30,-16" fill="none" stroke="#fff" stroke-width="8"/>
+  <g id="steam" stroke="#B9C6D6" stroke-width="6" fill="none" stroke-linecap="round"><path d="M-12,-74 Q-24,-96 -10,-116"/><path d="M12,-74 Q0,-96 14,-116"/></g>
+ </g>
+
+ <!-- consultant (standing, origin at feet) -->
+ <g id="cs">
+  <g id="csLegL"><rect x="-52" y="-440" width="46" height="410" rx="18" fill="#1F2A44"/><ellipse cx="-38" cy="-18" rx="40" ry="18" fill="#111"/></g>
+  <g id="csLegR"><rect x="6" y="-440" width="46" height="410" rx="18" fill="#1F2A44"/><ellipse cx="40" cy="-18" rx="40" ry="18" fill="#111"/></g>
+  <g id="csArmL">
+   <path d="M-92,-770 L-120,-610 L-112,-470" fill="none" stroke="#C8D2DE" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="M-92,-770 L-120,-610 L-112,-470" fill="none" stroke="#fff" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+   <circle cx="-112" cy="-466" r="21" fill="#EDB58E"/>
+   <g id="laptop"><rect x="-200" y="-520" width="150" height="100" rx="10" fill="#B9C6D6"/><rect x="-190" y="-512" width="130" height="80" rx="6" fill="#1E6FD9"/></g>
+  </g>
+  <path d="M-96,-450 L-96,-722 Q-96,-792 -30,-802 L30,-802 Q96,-792 96,-722 L96,-450 Z" fill="#fff" stroke="#C8D2DE" stroke-width="4"/>
+  <rect x="-96" y="-462" width="192" height="20" fill="#1F2A44"/>
+  <path d="M0,-790 L-15,-770 L-9,-560 L0,-538 L9,-560 L15,-770Z" fill="#1E6FD9"/>
+  <path d="M-12,-792 L12,-792 L8,-770 L-8,-770Z" fill="#1656AD"/>
+  <rect x="-20" y="-838" width="40" height="44" fill="#E2A882"/>
+  <path d="M-32,-802 L-4,-772 M32,-802 L4,-772" stroke="#C8D2DE" stroke-width="5"/>
+  <g id="csHead">
+   <ellipse cx="-56" cy="-905" rx="11" ry="18" fill="#E2A882"/>
+   <ellipse cx="56" cy="-905" rx="11" ry="18" fill="#E2A882"/>
+   <ellipse cx="0" cy="-910" rx="57" ry="69" fill="#EDB58E"/>
+   <path d="M-56,-902 Q-52,-842 0,-836 Q52,-842 56,-902 Q46,-866 28,-862 Q0,-856 -28,-862 Q-46,-866 -56,-902Z" fill="#2A2A2A"/>
+   <path d="M-60,-918 Q-66,-1000 -4,-1006 Q58,-1004 62,-930 Q52,-966 18,-972 Q-10,-960 -30,-976 Q-44,-950 -60,-918Z" fill="#1A1A1A"/>
+   <g id="csEyes"><ellipse cx="-21" cy="-916" rx="6.5" ry="8.5" fill="#222"/><ellipse cx="21" cy="-916" rx="6.5" ry="8.5" fill="#222"/></g>
+   <rect x="-36" y="-942" width="28" height="7" rx="3.5" fill="#1A1A1A"/><rect x="8" y="-942" width="28" height="7" rx="3.5" fill="#1A1A1A"/>
+   <path d="M2,-912 Q-8,-886 6,-884" fill="none" stroke="#CF936C" stroke-width="5" stroke-linecap="round"/>
+   <path d="M-22,-874 Q0,-850 22,-874Z" fill="#fff" stroke="#7A2E1E" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+  <g id="csArmR">
+   <path d="M92,-770 L120,-610 L112,-470" fill="none" stroke="#C8D2DE" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="M92,-770 L120,-610 L112,-470" fill="none" stroke="#fff" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+   <circle cx="112" cy="-466" r="21" fill="#EDB58E"/>
+  </g>
+  <g id="bulb" opacity="0">
+   <g transform="translate(-150,40)"><circle cx="0" cy="-1120" r="90" fill="url(#glow)"/>
+   <path d="M-32,-1130 A40,40 0 1 1 32,-1130 Q20,-1110 18,-1092 L-18,-1092 Q-20,-1110 -32,-1130Z" fill="#FFD43B" stroke="#E0A800" stroke-width="5"/>
+   <rect x="-18" y="-1090" width="36" height="22" rx="5" fill="#8C97A6"/></g>
+  </g>
+ </g>
+ <g id="spark"></g>
+</svg>
+
+<div id="bubbles"></div>
+
+<div id="panel" class="abs">
+ <div id="phead"><span id="ptitle">سیستم مدیریت مکتب</span><div class="dots"><b></b><b></b><b></b></div></div>
+ <div class="feat" id="f0"></div><div class="feat" id="f1"></div><div class="feat" id="f2"></div><div class="feat" id="f3"></div><div class="feat" id="f4"></div>
+</div>
+<svg id="fg2" viewBox="0 0 1080 1920" width="1080" height="1920"><g id="cs2host"></g></svg>
+
+<div id="title" class="abs"><span id="titleT"></span></div>
+<div id="cap" class="abs"><span id="capT"></span></div>
+
+<div id="cta" class="abs">
+ <svg viewBox="0 0 1080 1920" width="1080" height="1920" style="position:absolute;inset:0">
+  <g opacity=".08" fill="#fff"><circle cx="980" cy="260" r="220"/><circle cx="80" cy="1500" r="260"/></g>
+  <g id="school" transform="translate(540,560)">
+   <path d="M-230,0 L0,-150 L230,0Z" fill="#FFC93C"/>
+   <rect x="-200" y="0" width="400" height="230" fill="#fff"/>
+   <rect x="-40" y="110" width="80" height="120" rx="8" fill="#1E6FD9"/>
+   <g fill="#8FD0FF"><rect x="-170" y="40" width="70" height="60" rx="6"/><rect x="100" y="40" width="70" height="60" rx="6"/><rect x="-170" y="130" width="70" height="60" rx="6"/><rect x="100" y="130" width="70" height="60" rx="6"/></g>
+   <circle cy="-60" r="34" fill="#fff"/><path d="M0,-60 L0,-82 M0,-60 L16,-52" stroke="#0F2A4A" stroke-width="6" stroke-linecap="round"/>
+   <rect x="-4" y="-260" width="8" height="110" fill="#fff"/><path d="M4,-260 L80,-238 L4,-216Z" fill="#E5484D"/>
+  </g>
+ </svg>
+ <div class="cta-b" id="ctaT1" style="top:840px;font-weight:900;font-size:78px;line-height:1.35">سیستم هوشمند<br>مدیریت مکتب</div>
+ <div class="cta-b" id="ctaT2" style="top:1070px"><span class="pill">حاضری</span><span class="pill">فیس</span><span class="pill">نتایج و شُقه</span><br><span class="pill">پیام به والدین</span><span class="pill">حساب مالی</span></div>
+ <div class="cta-b" id="ctaT3" style="top:1270px"><div id="btn"><svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#fff"/><path d="M22,18 Q16,20 17,28 Q20,40 32,47 Q40,51 46,46 L46,40 L38,36 L34,40 Q26,36 24,28 L28,24 L24,16Z" fill="#25B867"/></svg><span>همین حالا پیام بدهید</span></div></div>
+ <div class="cta-b" id="ctaT4" style="top:1440px;font-weight:800;font-size:44px;color:#FFC93C">نمایش رایگان برای مکتب شما</div>
+</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const P=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eb=x=>{if(x<=0)return 0;if(x>=1)return 1;const c1=1.9,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const S=(el,x=0,y=0,s=1,r=0,cx=0,cy=0)=>el.setAttribute('transform',`translate(${x},${y}) rotate(${r},${cx},${cy}) scale(${s})`);
+const H=(el,x=0,y=0,s=1,r=0)=>{el.style.transform=`translate(${x}px,${y}px) rotate(${r}deg) scale(${s})`};
+const O=(el,o)=>{el.style.opacity=o};
+const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+
+// ---------- build dynamic content ----------
+const NS='http://www.w3.org/2000/svg';
+const stacks=$('stacks'), fly=$('fly'), spark=$('spark');
+const stackDefs=[[260,14],[380,18],[700,16],[600,10]];
+stackDefs.forEach(([x,n],i)=>{const g=document.createElementNS(NS,'g');g.id='st'+i;
+ for(let k=0;k<n;k++){const u=document.createElementNS(NS,'use');u.setAttribute('href','#paperS');u.setAttribute('transform',`translate(${(k%3-1)*3},${-k*14})`);g.appendChild(u)}
+ stacks.appendChild(g)});
+for(let i=0;i<8;i++){const r=document.createElementNS(NS,'rect');r.setAttribute('x',-40);r.setAttribute('y',-52);r.setAttribute('width',80);r.setAttribute('height',104);r.setAttribute('fill','#fff');r.setAttribute('stroke','#C8D2DE');r.setAttribute('stroke-width',3);
+ const g=document.createElementNS(NS,'g');g.appendChild(r);for(let l=0;l<4;l++){const ln=document.createElementNS(NS,'rect');ln.setAttribute('x',-28);ln.setAttribute('y',-36+l*20);ln.setAttribute('width',56-(l%2)*16);ln.setAttribute('height',6);ln.setAttribute('fill','#D6DEE8');g.appendChild(ln)}
+ fly.appendChild(g)}
+for(let i=0;i<10;i++){const p=document.createElementNS(NS,'path');p.setAttribute('d','M0,-22 L6,-6 L22,0 L6,6 L0,22 L-6,6 L-22,0 L-6,-6Z');p.setAttribute('fill',i%2?'#FFC93C':'#fff');spark.appendChild(p)}
+
+const bubs=[["فیس کی‌ها <b>باقی</b> مانده؟",120,600,-4],["شُقه‌ها <b>دیر</b> شد!",560,470,3],["دفتر حاضری <b>گم</b> شد!",80,780,2],["والدین <b>شکایت</b> دارند",560,700,-3]];
+const bwrap=$('bubbles');
+bubs.forEach(([h,x,y,r],i)=>{const d=document.createElement('div');d.className='bub abs';d.innerHTML=h;d.style.left=x+'px';d.style.top=y+'px';d.dataset.r=r;d.id='b'+i;bwrap.appendChild(d)});
+
+const names=['احمد','محمود','فرید','نجیب','سمیع'];
+$('f0').innerHTML=names.map((n,i)=>`<div class="row"><div class="nm"><div class="av">${n[0]}</div>${n}</div><div class="chk ${i==3?'no':'ok'}" id="c${i}">${i==3?'✕':'✓'}</div></div>`).join('')+`<div class="sum" id="attSum">حاضر: ۴ &nbsp;|&nbsp; غایب: ۱</div>`;
+const fees=[['احمد',2500,1],['محمود',2500,1],['فرید',3000,0],['نجیب',2500,1],['سمیع',3000,0]];
+$('f1').innerHTML=fees.map(([n,a,p],i)=>`<div class="row"><div class="nm"><div class="av">${n[0]}</div>${n}</div><span class="amt">${fa(a.toLocaleString('en'))} افغانی</span><span class="chip" id="fc${i}" style="background:${p?'var(--green)':'var(--red)'}">${p?'پرداخت شد':'باقی'}</span></div>`).join('')+`<div class="sum">جمع‌آوری شده: <span id="feePct">۰</span>٪</div><div class="bar"><i id="feeBar" style="width:0%"></i></div>`;
+const subj=[['ریاضی',95],['دری',88],['انگلیسی',92],['ساینس',90],['پشتو',86]];
+$('f2').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-weight:900;font-size:40px;color:var(--navy)">شُقهٔ نتایج — احمد، صنف هفتم</div></div>`+subj.map(([s,g],i)=>`<div class="row" style="height:84px"><span>${s}</span><span style="display:flex;align-items:center;gap:18px"><span class="bar" style="width:260px;margin:0;height:26px"><i id="g${i}" style="width:0%"></i></span><b id="gn${i}" style="width:70px;text-align:left;color:var(--blue)">۰</b></span></div>`).join('')+`<div id="stamp" style="position:absolute;left:60px;bottom:40px;border:8px solid var(--red);color:var(--red);font-weight:900;font-size:50px;padding:4px 26px 12px;border-radius:18px;transform:rotate(-12deg)">اول نمره</div>`;
+const msgs=['احمد امروز در مکتب <b style="color:var(--green)">حاضر</b> است ✓','فیس ماه حمل <b style="color:var(--green)">پرداخت شد</b> ✓','نتایج امتحان احمد <b style="color:var(--blue)">آماده</b> است'];
+$('f3').innerHTML=`<div style="position:absolute;left:50%;top:22px;width:470px;margin-left:-235px;height:590px;background:#0F2A4A;border-radius:56px;padding:22px"><div style="background:#EAF2E8;height:100%;border-radius:38px;padding:70px 20px 20px;position:relative"><div style="position:absolute;top:16px;left:0;right:0;text-align:center;font-weight:800;font-size:28px;color:#0F2A4A">پیام‌ها از طرف مکتب</div>`+msgs.map((m,i)=>`<div id="m${i}" style="background:#fff;border-radius:24px 24px 24px 6px;padding:14px 22px 20px;margin-bottom:18px;font-weight:700;font-size:30px;line-height:1.5;color:#0F2A4A;box-shadow:0 4px 10px rgba(0,0,0,.08);transform-origin:left bottom">${m}</div>`).join('')+`</div></div>`;
+const months=['حمل','ثور','جوزا','سرطان','اسد','سنبله'], vals=[.45,.55,.5,.7,.8,.95];
+$('f4').innerHTML=`<div style="display:flex;align-items:flex-end;justify-content:space-around;height:380px;border-bottom:4px solid #D6DEE8;direction:ltr;margin-top:10px">`+vals.map((v,i)=>`<div style="text-align:center;width:80px"><div id="bar${i}" style="height:0px;background:linear-gradient(180deg,#2B8CFF,#1E6FD9);border-radius:14px 14px 0 0"></div></div>`).join('')+`</div><div style="display:flex;justify-content:space-around;direction:ltr;font-weight:700;font-size:28px;color:#5A6B82;margin-top:8px">`+months.map(m=>`<span style="width:80px;text-align:center">${m}</span>`).join('')+`</div><div class="row" style="border:none;margin-top:16px"><span>معاش استادان</span><span class="chip" id="salChip" style="background:var(--green)">پرداخت شد ✓</span></div>`;
+
+// caption windows [start,end,text]
+const CAPS=__CAPS__;
+const TITLES=[[0,7,'هنوز همه‌چیز روی کاغذ؟'],[7,15,'خسته شده‌اید؟'],[15,21,'راه حل اینجاست!'],[21,25.8,'حاضری با یک کلیک'],[25.8,30.6,'فیس و بدهکاران'],[30.6,35.4,'نتایج و شُقه'],[35.4,40.2,'پیام به والدین'],[40.2,45,'معاش و حساب مالی'],[45,52,'کار کمتر، نظم بیشتر!']];
+const FT=[21,25.8,30.6,35.4,40.2,45];
+
+let lastTitle='';
+function render(t){
+ // ---- title ----
+ const ti=TITLES.find(x=>t>=x[0]&&t<x[1]);
+ const tt=$('titleT');
+ if(ti){ if(tt.textContent!==ti[2]) tt.textContent=ti[2]; const k=eb(P(t,ti[0],ti[0]+.45)); const out=P(t,ti[1]-.25,ti[1]); H($('title'),0,0,k*(1-out*.3)); O($('title'),k*(1-out)); }
+ else O($('title'),0);
+ // ---- caption ----
+ const c=CAPS.find(x=>t>=x[0]&&t<x[1]);
+ if(c){ if($('capT').textContent!==c[2]) $('capT').textContent=c[2]; const k=eo(P(t,c[0],c[0]+.25)); O($('cap'),k*(1-P(t,c[1]-.2,c[1]))); H($('cap'),0,(1-k)*30,1);} else O($('cap'),0);
+
+ // ---- clock ----
+ const spd=t<15?120:(t<45?20:8);
+ S($('clkM'),0,0,1,(t*spd)%360); S($('clkH'),0,0,1,(t*spd/12)%360);
+
+ // ---- principal & desk visibility (hidden during features) ----
+ const hideK=eio(P(t,20.4,21.4))*(1-eio(P(t,44.6,45.6)));
+ const deskY=hideK*700;
+ S($('desk'),0,deskY); const vis=1-hideK; O($('desk'),vis); O($('pr'),vis); O($('stacks'),vis); O($('phone'),vis);
+ const breath=Math.sin(t*2.2)*3;
+ const stress=t<15?1:0, happy=t>=45?1:0;
+ const shake=stress?Math.sin(t*38)*2.5*(t>6?1:.4):0;
+ S($('pr'),540+shake,1100+deskY+breath*.3);
+ S($('prHead'),0,breath,1,stress?Math.sin(t*3)*4:Math.sin(t*1.5)*3,0,-360);
+ // blink
+ const bl=(t%3.7)<.12?.1:1; $('prEyes').setAttribute('transform',`translate(0,${-468*(1-bl)}) scale(1,${bl})`);
+ $('csEyes').setAttribute('transform',`translate(0,${-916*(1-((t+1.3)%4.1<.12?.1:1))}) scale(1,${(t+1.3)%4.1<.12?.1:1})`);
+ O($('prSweat'),stress); S($('prSweat'),0,stress?((t*60)%30):0);
+ O($('prSad'),1-happy); O($('prHappy'),happy);
+ $('prBrowL').setAttribute('transform',`rotate(${stress?-14:0},-29,-496) translate(0,${happy?-6:0})`);
+ $('prBrowR').setAttribute('transform',`rotate(${stress?14:0},29,-496) translate(0,${happy?-6:0})`);
+ // arms: stress -> hands to head-ish wobble; happy -> thumbs up
+ const armWob=stress?Math.sin(t*6)*6:0;
+ S($('prArmL'),0,0,1,armWob,-120,-290);
+ const up=eb(P(t,46.2,46.8));
+ O($('prArmR'),1-up>0.5?1:0); O($('prArmUp'),up>0.5?1:0);
+ S($('prArmUp'),0,0,1,Math.sin(t*5)*4,120,-290);
+ S($('prArmR'),0,0,1,-armWob,120,-290);
+ // tea
+ O($('tea'),P(t,45.4,45.9)); S($('tea'),300,1100+deskY); S($('steam'),0,-((t*20)%14));
+
+ // stacks: visible 0-15 ; vanish at 45 (gone)
+ const stackK=t<45?1:0;
+ stackDefs.forEach(([x],i)=>{const g=$('st'+i);const wob=stress?Math.sin(t*4+i)*2:0;S(g,x,1100+deskY,1,wob,0,0);O(g,stackK)});
+ // flying papers in scene 1-2
+ [...fly.children].forEach((g,i)=>{const ph=(t*0.6+i/8)%1;const on=(t>1.5&&t<14.6)?1:0;const x=540+Math.sin(i*2.1+ph*3)*360,y=1080-ph*700;S(g,x,y,.9,ph*360*(i%2?1:-1));O(g,on*Math.sin(ph*Math.PI))});
+ // phone ringing 9.5-13
+ const ring=(t>9.5&&t<13)?1:0; S($('phone'),830+(ring?Math.sin(t*60)*5:0),1100+deskY); O($('ring'),ring*((t*4)%1<.6?1:0));
+
+ // bubbles 7.6.. pop, out at 14.8
+ bubs.forEach((b,i)=>{const d=$('b'+i);const st=7.6+i*1.4;const k=eb(P(t,st,st+.4));const o=1-P(t,14.6,15);H(d,0,Math.sin(t*2+i)*6,k*(1-P(t,14.6,15)*.4),+d.dataset.r);O(d,(k>0?1:0)*o)});
+
+ // ---- consultant ----
+ let cx,cy,cs=0.9,walk=0,armR=0,armL=0,lap=1;
+ if(t<15){cx=1400;cy=1420}
+ else if(t<17.4){const k=eo(P(t,15,17.4));cx=1350-470*k;cy=1420;walk=1-P(t,16.8,17.4)}
+ else if(t<20.4){cx=880;cy=1420;armR=-150+Math.sin(t*9)*18*(t<19.2?1:0)}
+ else if(t<21.4){const k=eio(P(t,20.4,21.4));cx=880+(160-880)*k;cy=1420+(1250-1420)*k;cs=.9+(.62-.9)*k;walk=1}
+ else if(t<44.6){cx=160;cy=1250;cs=.62;armR=-128+Math.sin(t*2.5)*6;lap=0}
+ else if(t<45.6){const k=eio(P(t,44.6,45.6));cx=160+(905-160)*k;cy=1250+(1420-1250)*k;cs=.62+(.9-.62)*k;walk=1;lap=0}
+ else {cx=905;cy=1420;armR=-150+Math.sin(t*7)*16;lap=0}
+ const wph=Math.sin(t*12)*walk;
+ S($('cs'),cx,cy+(walk?-Math.abs(Math.sin(t*12))*8:Math.sin(t*2)*2),cs);
+ S($('csLegL'),0,0,1,wph*16,-29,-440); S($('csLegR'),0,0,1,-wph*16,29,-440);
+ S($('csArmL'),0,0,1,-wph*14+armL,-92,-770); S($('csArmR'),0,0,1,wph*14+armR,92,-770);
+ O($('laptop'),lap);
+ S($('csHead'),0,0,1,Math.sin(t*1.8)*3,0,-830);
+ // bulb 17.6-20.4
+ const bk=eb(P(t,17.6,18.1))*(1-P(t,20.2,20.5)); O($('bulb'),bk); S($('bulb'),0,(1-bk)*40);
+ // move consultant into foreground svg during features so it overlays panel
+ const host=$('cs2host'); const csEl=$('cs');
+ if(t>=20.8&&t<45.2){ if(csEl.parentNode!==host) host.appendChild(csEl);} else { if(csEl.parentNode===host) $('fg').insertBefore(csEl,$('spark')); }
+
+ // ---- dim + panel ----
+ const pk=eb(P(t,20.9,21.5)); const pout=eio(P(t,44.5,45.1));
+ O($('panel'),pk>0?1-pout:0); H($('panel'),0,(1-pk)*120+pout*80,(.6+.4*pk)*(1-pout*.2));
+ FT.slice(0,5).forEach((s,i)=>{const e=FT[i+1];const k=eo(P(t,s,s+.35));const o=(t>=s&&t<e)?1:0;const f=$('f'+i);O(f,o);H(f,(1-k)*(-60),0,1)});
+ // attendance checks
+ for(let i=0;i<5;i++){const k=eb(P(t,22+i*.45,22.35+i*.45));H($('c'+i),0,0,k);O($('c'+i),k>0?1:0)}
+ O($('attSum'),P(t,24.4,24.8));
+ // fees
+ for(let i=0;i<5;i++){const k=eb(P(t,26.4+i*.4,26.75+i*.4));H($('fc'+i),0,0,k);O($('fc'+i),k>0?1:0)}
+ const fp=eo(P(t,28.4,29.8))*80; $('feeBar').style.width=fp+'%'; $('feePct').textContent=fa(Math.round(fp));
+ // grades
+ subj.forEach(([s,g],i)=>{const k=eo(P(t,31.2+i*.3,32.2+i*.3));$('g'+i).style.width=(g*k)+'%';$('gn'+i).textContent=fa(Math.round(g*k))});
+ const sk=eb(P(t,33.6,34));H($('stamp'),0,0,(2-sk)*sk>0?2.2-1.2*sk:0,-12);O($('stamp'),sk>0?1:0);
+ // messages
+ for(let i=0;i<3;i++){const k=eb(P(t,36.2+i*1,36.6+i*1));H($('m'+i),0,0,k);O($('m'+i),k>0?1:0)}
+ // finance bars
+ vals.forEach((v,i)=>{$('bar'+i).style.height=(330*v*eo(P(t,40.8+i*.18,41.6+i*.18)))+'px'});
+ const sc=eb(P(t,42.8,43.2)); H($('salChip'),0,0,sc); O($('salChip'),sc>0?1:0);
+
+ // sparkles at 45.4-50
+ [...spark.children].forEach((p,i)=>{const st=45.4+i*.35;const k=P(t,st,st+.9);const a=i*36*Math.PI/180;const x=540+Math.cos(a)*(260+60*(i%3)),y=560+Math.sin(a)*170;S(p,x,y,Math.sin(k*Math.PI)*1.3,k*180);O(p,(k>0&&k<1&&t<51.6)?1:0)});
+
+ // ---- CTA ----
+ const ck=eio(P(t,52,52.7)); O($('cta'),ck>0?1:0); H($('cta'),0,(1-ck)*1920,1);
+ const sch=eb(P(t,52.5,53.1)); $('school').setAttribute('transform',`translate(540,${560+(1-sch)*60}) scale(${sch})`);
+ [['ctaT1',53.0],['ctaT2',53.6],['ctaT3',54.2],['ctaT4',54.8]].forEach(([id,s])=>{const k=eb(P(t,s,s+.45));O($(id),k>0?clamp(k):0);H($(id),0,(1-k)*60,1)});
+ const pulse=t>55?1+Math.sin((t-55)*6)*.045:1; H($('btn'),0,0,pulse);
+}
+window.render=render;
+render(0);
+</script>
+</body>
+</html>
